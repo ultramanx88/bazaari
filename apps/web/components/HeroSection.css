@@ -1,0 +1,19 @@
+/* สไตล์ animation เลื่อนขึ้น */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.8s forwards ease-out;
+}
+
+.delay-1 {
+  animation-delay: 0.4s;
+}
