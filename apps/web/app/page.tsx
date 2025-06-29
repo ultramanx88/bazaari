@@ -1,24 +1,22 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import HeroSection from '../components/HeroSection'
+import ServicesSection from '../components/ServicesSection' // แก้ไข path ให้ถูกต้อง
+import DownloadSection from '../components/DownloadSection'
+import FooterSection from '../components/FooterSection'
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-// apps/web/app/page.tsx
 export default function HomePage() {
-  return <main style={{ padding: '2rem' }}>Welcome to your app!</main>;
+  return (
+    <main>
+      {/* Hero Section */}
+      <HeroSection />
+      
+      {/* Services Section */}
+      <ServicesSection />
+
+      {/* Download Section */}
+      <DownloadSection />
+
+      {/* Footer Section */}
+      <FooterSection />
+    </main>
+  )
 }

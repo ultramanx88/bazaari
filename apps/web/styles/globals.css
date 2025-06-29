@@ -1,9 +1,0 @@
-@import "bulma/css/bulma.css";
-@import "@fortawesome/fontawesome-free/css/all.css";
-
-/* Tajawal font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
-body {
-  font-family: 'Tajawal', sans-serif;
-}

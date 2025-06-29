@@ -1,47 +1,29 @@
-// apps/web/app/layout.tsx
-import { ClerkProvider } from '@clerk/nextjs';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
-import Navbar from '../components/Navbar';
-import HeroSection from '../components/HeroSection';
-import DownloadSection from '../components/DownloadSection';
-import FooterSection from '../components/FooterSection';
-
-import '../styles/globals.css';
+import './globals.css'
+import Navbar from '../components/Navbar'
 
 export const metadata = {
-  title: 'BAZAAARI',
-  description: 'Your app description',
-};
+  title: 'Bazzaaari App',
+  description: 'Your marketplace solution',
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-          <link
-            href="https://fonts.googleapis.com/css2?family=Karma&display=swap"
-            rel="stylesheet"
-          />
-
-        <body>
-          {/* Navbar */}
-          <Navbar />
-
-          {/* Navbar / Header */}
-          <header style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          <HeroSection />
-          <DownloadSection />
-          <FooterSection />
-          {/* Main content */}
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+    <html lang="th">
+      <head>
+        {/* เพิ่ม Tailwind CDN */}
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body>
+        <Navbar />
+        
+        {/* คุณอาจจะเพิ่ม header หรือปุ่ม login/logout เองด้วย Firebase Auth ที่นี่ */}
+        
+        {children}
+      </body>
+    </html>
+  )
 }

@@ -1,12 +1,16 @@
 {
-  "name": "firebase",
+  "name": "@bazzaaari/firebase",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "dist/initFirebase.js",
+  "types": "dist/initFirebase.d.ts",
+  "license": "MIT",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "description": "Firebase SDK initialization for Bazzaaari app",
+  "dependencies": {
+    "firebase": "^10.14.1"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
 }

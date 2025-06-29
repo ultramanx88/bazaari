@@ -1,109 +1,108 @@
+@import "bulma/css/bulma.css";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+/* Indian-inspired font that supports both English and Hindi */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+/* Custom Color Variables - Indian marketplace theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  --primary: #F28C28;      /* saffron orange */
+  --secondary: #0A4D3C;    /* dark green */
+  --accent: #FFD700;       /* gold */
+  --background: #FFF8E7;   /* ivory */
+  --text: #2E2E2E;         /* charcoal */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Override Bulma Primary Color */
+.is-primary {
+  background-color: var(--primary) !important;
+  color: white !important;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
-}
-
-.hero-section {
-  position: relative;
-  height: 90vh;
-  width: 100vw;
-  background-image: url('/assets/bazaaari-hero.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* ทึบครึ่งหนึ่ง */
-  z-index: 1;
-}
-
-.content {
-  position: relative;
+.button.is-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
   color: white;
-  text-align: center;
-  max-width: 90%;
-  z-index: 2;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.content.animate {
-  transform: translateY(0);
-  opacity: 1;
+.button.is-primary:hover {
+  background-color: #e67e1f;
+  border-color: #e67e1f;
 }
 
-.title {
-  font-family: 'Karma', serif; /* ฟอนต์กลิ่นอายฮินดี แนะนำใช้ Google Fonts Karma หรือฟอนต์ที่คล้าย */
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
+/* Custom Secondary Color */
+.is-secondary {
+  background-color: var(--secondary) !important;
+  color: white !important;
 }
 
-.subtitle {
-  font-family: 'Karma', serif;
-  font-size: 1.5rem;
-  font-weight: 300;
+.button.is-secondary {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  color: white;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-  }
-  .subtitle {
-    font-size: 1rem;
-  }
+.button.is-secondary:hover {
+  background-color: #083d30;
+  border-color: #083d30;
+}
+
+/* Custom Accent Color */
+.is-accent {
+  background-color: var(--accent) !important;
+  color: var(--text) !important;
+}
+
+.button.is-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.button.is-accent:hover {
+  background-color: #e6c200;
+  border-color: #e6c200;
+}
+
+/* Custom text colors for components */
+.has-text-primary-custom {
+  color: var(--primary) !important;
+}
+
+.has-text-secondary-custom {
+  color: var(--secondary) !important;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: var(--background);
+  border-bottom: 2px solid var(--primary);
+}
+
+.navbar-brand .navbar-item {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.navbar-item:hover {
+  background-color: rgba(242, 140, 40, 0.1);
+}
+
+/* Hero Section */
+.hero.is-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #e67e1f 100%);
+  min-height: 90vh;
+}
+
+/* Cards */
+.card {
+  background-color: var(--background);
+  border: 1px solid rgba(242, 140, 40, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

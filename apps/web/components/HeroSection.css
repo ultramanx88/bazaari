@@ -10,10 +10,41 @@
   }
 }
 
-.slide-up {
+/* Animation ที่เล่นอัตโนมัติไม่ต้องใช้ JavaScript */
+.slide-up-auto {
+  opacity: 0;
+  transform: translateY(40px);
   animation: slideUp 0.8s forwards ease-out;
+  animation-delay: 0.2s;
 }
 
 .delay-1 {
-  animation-delay: 0.4s;
+  animation-delay: 0.6s;
+}
+
+/* Hero Section เต็มความสูงหน้าจอ */
+.hero-full-viewport {
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+/* วิธีที่ 2: ถ้าต้องการหักความสูง navbar ออก */
+.hero.is-fullheight-with-navbar {
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+/* สำหรับจอขนาดเล็ก ให้แน่ใจว่าไม่เกิน viewport */
+@media (max-height: 600px) {
+  .hero-full-viewport {
+    min-height: 600px !important;
+  }
+}
+
+/* สำหรับ mobile landscape */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-full-viewport {
+    height: auto !important;
+    min-height: 500px !important;
+  }
 }

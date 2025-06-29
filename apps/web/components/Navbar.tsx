@@ -2,13 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,23 +40,23 @@ export default function Navbar() {
 
             <div className="navbar-item">
               <div className="buttons">
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <button className="button is-small is-rounded is-light">
-                      Login
-                    </button>
-                  </SignInButton>
-
-                  <SignUpButton mode="modal">
-                    <button className="button is-small is-rounded is-primary ml-2">
-                      Register
-                    </button>
-                  </SignUpButton>
-                </SignedOut>
-
-                <SignedIn>
-                  <UserButton afterSignOutUrl="/" />
-                </SignedIn>
+                {/* ตรงนี้ให้แก้เป็นปุ่ม login/register ของ Firebase Auth เอง */}
+                <button
+                  className="button is-small is-rounded is-light"
+                  onClick={() => {
+                    // เปิด modal login Firebase หรือ redirect ไปหน้า login
+                  }}
+                >
+                  Login
+                </button>
+                <button
+                  className="button is-small is-rounded is-primary ml-2"
+                  onClick={() => {
+                    // เปิด modal register Firebase หรือ redirect ไปหน้า register
+                  }}
+                >
+                  Register
+                </button>
               </div>
             </div>
           </div>
@@ -82,19 +75,9 @@ export default function Navbar() {
             Become a Partner
           </Link>
 
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button className="menu-item">Login</button>
-            </SignInButton>
-
-            <SignUpButton mode="modal">
-              <button className="menu-item">Register</button>
-            </SignUpButton>
-          </SignedOut>
-
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          {/* ปุ่ม Login/ Register */}
+          <button className="menu-item">Login</button>
+          <button className="menu-item">Register</button>
         </div>
       </div>
 

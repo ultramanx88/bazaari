@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "customer-universal-v2", 
+    "slug": "customer-universal-v2",
+    "version": "1.0.0",
+    "plugins": ["expo-router"],
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

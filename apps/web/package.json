@@ -8,14 +8,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "export": "next export"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "^2.12.0",
-    "@clerk/nextjs": "^6.20.2",
+    "@bazzaaari/firebase": "1.0.0",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@repo/ui": "*",
     "bulma": "^1.0.4",
+    "firebase": "^10.14.1",
     "next": "^15.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -26,7 +27,10 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.27.0",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8",
     "typescript": "5.8.2"
   }
 }
