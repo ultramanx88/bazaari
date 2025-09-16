@@ -1,108 +1,35 @@
-@import "bulma/css/bulma.css";
-@import "@fortawesome/fontawesome-free/css/all.css";
+@import '../styles/ogani-theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Indian-inspired font that supports both English and Hindi */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
-
-/* Custom Color Variables - Indian marketplace theme */
+/* Override Tailwind with our theme */
 :root {
-  --primary: #F28C28;      /* saffron orange */
-  --secondary: #0A4D3C;    /* dark green */
-  --accent: #FFD700;       /* gold */
-  --background: #FFF8E7;   /* ivory */
-  --text: #2E2E2E;         /* charcoal */
+  --foreground-rgb: 28, 28, 28;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
 }
 
 body {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-}
-
-/* Override Bulma Primary Color */
-.is-primary {
-  background-color: var(--primary) !important;
-  color: white !important;
-}
-
-.button.is-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  color: white;
-}
-
-.button.is-primary:hover {
-  background-color: #e67e1f;
-  border-color: #e67e1f;
-}
-
-/* Custom Secondary Color */
-.is-secondary {
-  background-color: var(--secondary) !important;
-  color: white !important;
-}
-
-.button.is-secondary {
-  background-color: var(--secondary);
-  border-color: var(--secondary);
-  color: white;
-}
-
-.button.is-secondary:hover {
-  background-color: #083d30;
-  border-color: #083d30;
-}
-
-/* Custom Accent Color */
-.is-accent {
-  background-color: var(--accent) !important;
-  color: var(--text) !important;
-}
-
-.button.is-accent {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--text);
-}
-
-.button.is-accent:hover {
-  background-color: #e6c200;
-  border-color: #e6c200;
-}
-
-/* Custom text colors for components */
-.has-text-primary-custom {
-  color: var(--primary) !important;
-}
-
-.has-text-secondary-custom {
-  color: var(--secondary) !important;
-}
-
-/* Navbar Styling */
-.navbar {
-  background-color: var(--background);
-  border-bottom: 2px solid var(--primary);
-}
-
-.navbar-brand .navbar-item {
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.navbar-item:hover {
-  background-color: rgba(242, 140, 40, 0.1);
-}
-
-/* Hero Section */
-.hero.is-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #e67e1f 100%);
-  min-height: 90vh;
-}
-
-/* Cards */
-.card {
-  background-color: var(--background);
-  border: 1px solid rgba(242, 140, 40, 0.2);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }

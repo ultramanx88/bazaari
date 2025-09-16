@@ -8,45 +8,51 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Indian marketplace theme colors
+        // Bazaari theme colors
+        'theme-mint': '#8ecae6',
+        'theme-blue': '#219ebc',
+        'theme-dark-blue': '#023047',
+        'theme-orange': '#ffb703',
+        'theme-yellow': '#fb8500',
+        
         primary: {
-          DEFAULT: '#F28C28',   // saffron orange
-          50: '#fef7ed',
-          100: '#fde8d3',
-          200: '#fbcda5',
-          300: '#f8ab6d',
-          400: '#f5a654',       // primary-light
-          500: '#F28C28',       // primary (main)
-          600: '#e67e1f',       // primary-dark
-          700: '#d16a0f',
-          800: '#a85410',
-          900: '#87450f',
+          DEFAULT: '#219ebc',   // theme blue
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#219ebc',       // primary (main)
+          600: '#0284c7',       // primary-dark
+          700: '#0369a1',
+          800: '#075985',
+          900: '#023047',       // theme dark blue
         },
         secondary: {
-          DEFAULT: '#0A4D3C',   // dark green
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#0d5a47',       // secondary-light
-          700: '#0A4D3C',       // secondary (main)
-          800: '#083d30',       // secondary-dark
-          900: '#052e23',
+          DEFAULT: '#8ecae6',   // theme mint
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#8ecae6',       // secondary (main)
+          400: '#7dd3fc',
+          500: '#38bdf8',
+          600: '#0ea5e9',
+          700: '#0284c7',
+          800: '#0369a1',
+          900: '#0c4a6e',
         },
         accent: {
-          DEFAULT: '#FFD700',   // gold
+          DEFAULT: '#ffb703',   // theme orange
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
           300: '#fcd34d',
           400: '#fbbf24',
-          500: '#FFD700',       // accent (main)
-          600: '#e6c200',       // accent-dark
-          700: '#ca8a04',
-          800: '#a16207',
-          900: '#854d0e',
+          500: '#ffb703',       // accent (main)
+          600: '#d97706',       // accent-dark
+          700: '#b45309',
+          800: '#92400e',
+          900: '#fb8500',       // theme yellow
         },
         background: {
           DEFAULT: '#FFF8E7',   // ivory
@@ -72,10 +78,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        // Indian marketplace fonts
-        sans: ['Noto Sans Devanagari', 'system-ui', 'sans-serif'],
-        devanagari: ['Noto Sans Devanagari', 'serif'],
-        display: ['Noto Sans Devanagari', 'system-ui', 'sans-serif'],
+        // Bazaari fonts (Cairo from Ogani theme)
+        sans: ['Cairo', 'system-ui', 'sans-serif'],
+        cairo: ['Cairo', 'sans-serif'],
+        display: ['Cairo', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -128,10 +134,10 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'gradient-indian': 'linear-gradient(135deg, #F28C28 0%, #e67e1f 100%)',
-        'gradient-green': 'linear-gradient(135deg, #0A4D3C 0%, #083d30 100%)',
-        'gradient-gold': 'linear-gradient(135deg, #FFD700 0%, #e6c200 100%)',
-        'gradient-ivory': 'linear-gradient(145deg, #FFF8E7, #f5f1e8)',
+        'gradient-theme': 'linear-gradient(135deg, #8ecae6 0%, #219ebc 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #219ebc 0%, #023047 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #ffb703 0%, #fb8500 100%)',
+        'gradient-mint': 'linear-gradient(135deg, #8ecae6 0%, #7dd3fc 100%)',
       },
     },
   },

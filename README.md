@@ -1,84 +1,213 @@
-# Turborepo starter
+# Bazaari Platform
 
-This Turborepo starter is maintained by the Turborepo core team.
+Multi-service platform ที่รวมบริการต่างๆ ไว้ในที่เดียว ใช้ Turborepo สำหรับจัดการ monorepo
 
-## Using this example
+## 🚀 Services
 
-Run the following command:
+1. **Food Delivery** - ส่งอาหาร และร้านอาหาร (เหมือน Grab Food) multivendor
+2. **Hotels & Accommodation** - โรงแรม และที่พัก (เหมือน Agoda/Booking.com)
+3. **Spa & Massage** - สปาและนวด multivendor (booking system)
+4. **Visa Services** - บริการปรึกษาและรับทำวีซ่า
+5. **Restaurant Booking** - จองร้านอาหาร multivendor
+6. **Healthcare** - คลินิก สถานเวชกรรม multivendor (booking system)
+7. **Real Estate** - อสังหาริมทรัพย์ multivendor
+8. **Marketplace** - ตลาดออนไลน์ multivendor
 
-```sh
-npx create-turbo@latest
+## 📱 Applications
+
+### Mobile Apps (Expo)
+- **`apps/customer-app`** - แอพสำหรับผู้ใช้ทั่วไป (สั่งอาหาร + ใช้บริการทั้งหมด)
+- **`apps/vendor-app`** - แอพสำหรับร้านค้า/กิจการต่างๆ
+- **`apps/rider-app`** - แอพสำหรับ rider ขับส่งอาหาร (แยกต่างหาก)
+
+### Web Applications (Next.js)
+- **`apps/web-app`** - เว็บไซต์หลักสำหรับผู้ใช้
+- **`apps/pos-app`** - ระบบ POS สำหรับกิจการต่างๆ
+
+### Backend
+- **`backend`** - Go Fiber + GORM API server
+
+### Packages
+- **`packages/shared`** - Shared types, schemas, และ utilities
+- **`packages/ui`** - React component library
+- **`packages/typescript-config`** - TypeScript configurations
+
+### Database
+- **`prisma`** - Prisma schema สำหรับ Vercel Postgres integration
+- **Backend GORM** - Go models และ database management
+
+## เทคโนโลยีที่ใช้
+
+### Frontend
+- **Next.js 14** - React framework with App Router
+- **React Query** - Data fetching และ caching
+- **Tailwind CSS** - Utility-first CSS framework
+- **Zustand** - State management
+
+### Mobile
+- **Expo** - React Native development platform
+- **Expo Router** - File-based routing
+
+### Backend
+- **Go Fiber** - Fast HTTP web framework
+- **GORM** - Go ORM library
+- **PostgreSQL** - Primary database
+- **JWT** - Authentication
+
+### Shared
+- **TypeScript** - Type safety
+- **Zod** - Schema validation
+- **Turborepo** - Monorepo management
+
+## การติดตั้งและรัน
+
+### Prerequisites
+- Node.js 18+
+- Go 1.21+
+- PostgreSQL
+- npm หรือ yarn
+
+### Installation
+
+```bash
+# Clone repository
+git clone <your-repo-url>
+cd bazaari-monorepo
+
+# Install dependencies
+npm install
+
+# Copy environment files
+cp .env.example .env
+cp backend/.env.example backend/.env
+
+# Setup database
+npm run db:generate
+npm run db:push
 ```
 
-## What's inside?
+### Development
 
-This Turborepo includes the following packages/apps:
+```bash
+# Run all applications
+npm run dev
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+# Run specific applications
+npm run customer:dev    # Customer mobile app
+npm run vendor:dev      # Vendor mobile app  
+npm run rider:dev       # Rider mobile app
+npm run web:dev         # Web application
+npm run pos:dev         # POS application
+npm run backend:dev     # Backend API
+```
 
 ### Build
 
-To build all apps and packages, run the following command:
+```bash
+# Build all packages
+npm run build
 
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+# Build specific package
+npm run build --filter=@bazaari/web
 ```
 
-### Remote Caching
+## Database Management
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+### Prisma (Vercel Integration)
+```bash
+npm run db:generate  # Generate Prisma client
+npm run db:push      # Push schema to database
+npm run db:migrate   # Create migration
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+### Go Backend (GORM)
+```bash
+cd backend
+go run main.go  # Auto-migrate on startup
 ```
 
-## Useful Links
+## API Endpoints
 
-Learn more about the power of Turborepo:
+### Authentication
+- `POST /api/v1/auth/register` - User registration
+- `POST /api/v1/auth/login` - User login
+- `POST /api/v1/auth/refresh` - Refresh token
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Products
+- `GET /api/v1/products` - List products
+- `GET /api/v1/products/:id` - Get product details
+- `POST /api/v1/products` - Create product (protected)
+- `PUT /api/v1/products/:id` - Update product (protected)
+- `DELETE /api/v1/products/:id` - Delete product (protected)
+
+### Orders
+- `GET /api/v1/orders` - List user orders (protected)
+- `POST /api/v1/orders` - Create order (protected)
+- `GET /api/v1/orders/:id` - Get order details (protected)
+
+## Deployment
+
+### Web (Vercel)
+```bash
+# Deploy to Vercel
+vercel --prod
+```
+
+### Mobile (Expo)
+```bash
+cd apps/mobile
+expo build:android  # Android build
+expo build:ios      # iOS build
+```
+
+### Backend (Docker/Cloud)
+```bash
+cd backend
+go build -o bin/server main.go
+./bin/server
+```
+
+## การพัฒนา
+
+### เพิ่ม Package ใหม่
+```bash
+# สร้าง package ใหม่ใน packages/
+mkdir packages/new-package
+cd packages/new-package
+npm init -y
+```
+
+### เพิ่ม App ใหม่
+```bash
+# สร้าง app ใหม่ใน apps/
+mkdir apps/new-app
+cd apps/new-app
+npm init -y
+```
+
+### Shared Types
+ใช้ `@bazaari/shared` สำหรับ types, schemas, และ utilities ที่ใช้ร่วมกัน
+
+```typescript
+import { User, Product, LoginSchema } from '@bazaari/shared';
+```
+
+## Scripts
+
+- `npm run dev` - Start all development servers
+- `npm run build` - Build all packages
+- `npm run lint` - Lint all packages
+- `npm run format` - Format code with Prettier
+- `npm run check-types` - Type check all packages
+
+## Environment Variables
+
+ดู `.env.example` สำหรับตัวแปรสภาพแวดล้อมที่จำเป็น
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request

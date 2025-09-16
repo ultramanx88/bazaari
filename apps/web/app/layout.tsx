@@ -1,29 +1,37 @@
-import './globals.css'
-import Navbar from '../components/Navbar'
+import type { Metadata } from 'next';
+import { Cairo } from 'next/font/google';
+import './globals.css';
+import { Providers } from './providers';
 
-export const metadata = {
-  title: 'Bazzaaari App',
-  description: 'Your marketplace solution',
-}
+const cairo = Cairo({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-cairo',
+});
+
+export const metadata: Metadata = {
+  title: 'Bazaari - Your Multi-Service Platform',
+  description: 'Food delivery, Hotels, Spa, Visa services, Healthcare, Real estate, Marketplace - all in one platform',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="th">
+    <html lang="en">
       <head>
-        {/* เพิ่ม Tailwind CDN */}
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+        />
       </head>
-      <body>
-        <Navbar />
-        
-        {/* คุณอาจจะเพิ่ม header หรือปุ่ม login/logout เองด้วย Firebase Auth ที่นี่ */}
-        
-        {children}
+      <body className={`${cairo.variable} font-cairo antialiased`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
-  )
+  );
 }

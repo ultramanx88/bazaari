@@ -1,14 +1,27 @@
 {
-  "name": "bazaaari-app",
+  "name": "bazaari-platform",
+  "version": "1.0.0",
   "private": true,
+  "description": "Multi-service platform: Food delivery, Hotels, Spa, Visa services, Healthcare, Real estate, Marketplace",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "format": "prettier --write \"**/*.{ts,tsx,md,go}\"",
+    "check-types": "turbo run check-types",
+    "db:generate": "turbo run db:generate",
+    "db:push": "turbo run db:push",
+    "db:migrate": "turbo run db:migrate",
+    "backend:dev": "cd backend && go run main.go",
+    "backend:build": "cd backend && go build -o bin/server main.go",
+    "customer:dev": "turbo run dev --filter=@bazaari/customer-app",
+    "vendor:dev": "turbo run dev --filter=@bazaari/vendor-app", 
+    "rider:dev": "turbo run dev --filter=@bazaari/rider-app",
+    "web:dev": "turbo run dev --filter=@bazaari/web-app",
+    "pos:dev": "turbo run dev --filter=@bazaari/pos-app"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
     "typescript": "5.8.2"
@@ -20,13 +33,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "expo": "~53.0.0",
-    "expo-router": "~3.5.0",
-    "expo-status-bar": "^2.2.3",
-    "firebase": "^1.0.0",
-    "install": "^0.13.0",
-    "react-native-web": "^0.19.12"
-  }
+  ]
 }
