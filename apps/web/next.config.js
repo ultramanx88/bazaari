@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@bazaari/shared', '@bazaari/ui'],
   images: {
     domains: ['localhost', 'your-image-domain.com'],
   },

@@ -15,8 +15,6 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@bazaari/shared": "file:../../packages/shared",
-    "@bazaari/ui": "file:../../packages/ui",
     "@hookform/resolvers": "^3.3.0",
     "@prisma/client": "^6.16.2",
     "@tanstack/react-query": "^5.0.0",
