@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm install ../../packages/shared && npm install ../../packages/ui && npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "PRISMA_DATABASE_URL": "@prisma_database_url",
+    "POSTGRES_URL": "@postgres_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret"
+  }
+}

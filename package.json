@@ -4,8 +4,9 @@
   "private": true,
   "description": "Multi-service platform: Food delivery, Hotels, Spa, Visa services, Healthcare, Real estate, Marketplace",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
+    "build": "cd apps/web && npm run build",
+    "dev": "cd apps/web && npm run dev",
+    "start": "cd apps/web && npm start",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,go}\"",
     "check-types": "turbo run check-types",
@@ -18,7 +19,9 @@
     "vendor:dev": "turbo run dev --filter=@bazaari/vendor-app", 
     "rider:dev": "turbo run dev --filter=@bazaari/rider-app",
     "web:dev": "turbo run dev --filter=@bazaari/web-app",
-    "pos:dev": "turbo run dev --filter=@bazaari/pos-app"
+    "pos:dev": "turbo run dev --filter=@bazaari/pos-app",
+    "turbo:build": "turbo run build",
+    "turbo:dev": "turbo run dev"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

@@ -1,98 +1,101 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 const FoodDeliveryPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [location, setLocation] = useState('Bangkok, Thailand');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [location, setLocation] = useState("Bangkok, Thailand");
 
   const categories = [
-    { id: 'all', name: 'All', icon: '🍽️' },
-    { id: 'indian', name: 'Indian', icon: '🍛' },
-    { id: 'thai', name: 'Thai', icon: '🍜' },
-    { id: 'chinese', name: 'Chinese', icon: '🥢' },
-    { id: 'fast-food', name: 'Fast Food', icon: '🍔' },
-    { id: 'dessert', name: 'Dessert', icon: '🍰' },
-    { id: 'beverages', name: 'Beverages', icon: '🥤' },
-    { id: 'healthy', name: 'Healthy', icon: '🥗' }
+    { id: "all", name: "All", icon: "🍽️" },
+    { id: "indian", name: "Indian", icon: "🍛" },
+    { id: "thai", name: "Thai", icon: "🍜" },
+    { id: "chinese", name: "Chinese", icon: "🥢" },
+    { id: "fast-food", name: "Fast Food", icon: "🍔" },
+    { id: "dessert", name: "Dessert", icon: "🍰" },
+    { id: "beverages", name: "Beverages", icon: "🥤" },
+    { id: "healthy", name: "Healthy", icon: "🥗" },
   ];
 
   const restaurants = [
     {
       id: 1,
-      name: 'Spice Garden Indian',
-      image: '/api/placeholder/300/200',
+      name: "Spice Garden Indian",
+      image: "/api/placeholder/300/200",
       rating: 4.5,
-      deliveryTime: '25-35 min',
-      deliveryFee: '฿25',
-      category: 'indian',
-      distance: '1.2 km',
-      featured: true
+      deliveryTime: "25-35 min",
+      deliveryFee: "฿25",
+      category: "indian",
+      distance: "1.2 km",
+      featured: true,
     },
     {
       id: 2,
-      name: 'Bangkok Street Food',
-      image: '/api/placeholder/300/200',
+      name: "Bangkok Street Food",
+      image: "/api/placeholder/300/200",
       rating: 4.3,
-      deliveryTime: '20-30 min',
-      deliveryFee: '฿20',
-      category: 'thai',
-      distance: '0.8 km',
-      featured: false
+      deliveryTime: "20-30 min",
+      deliveryFee: "฿20",
+      category: "thai",
+      distance: "0.8 km",
+      featured: false,
     },
     {
       id: 3,
-      name: 'Maharaja Palace',
-      image: '/api/placeholder/300/200',
+      name: "Maharaja Palace",
+      image: "/api/placeholder/300/200",
       rating: 4.7,
-      deliveryTime: '30-40 min',
-      deliveryFee: '฿30',
-      category: 'indian',
-      distance: '2.1 km',
-      featured: true
+      deliveryTime: "30-40 min",
+      deliveryFee: "฿30",
+      category: "indian",
+      distance: "2.1 km",
+      featured: true,
     },
     {
       id: 4,
-      name: 'Golden Dragon',
-      image: '/api/placeholder/300/200',
+      name: "Golden Dragon",
+      image: "/api/placeholder/300/200",
       rating: 4.4,
-      deliveryTime: '25-35 min',
-      deliveryFee: '฿25',
-      category: 'chinese',
-      distance: '1.5 km',
-      featured: false
+      deliveryTime: "25-35 min",
+      deliveryFee: "฿25",
+      category: "chinese",
+      distance: "1.5 km",
+      featured: false,
     },
     {
       id: 5,
-      name: 'Healthy Bowl',
-      image: '/api/placeholder/300/200',
+      name: "Healthy Bowl",
+      image: "/api/placeholder/300/200",
       rating: 4.6,
-      deliveryTime: '20-25 min',
-      deliveryFee: '฿22',
-      category: 'healthy',
-      distance: '1.0 km',
-      featured: false
+      deliveryTime: "20-25 min",
+      deliveryFee: "฿22",
+      category: "healthy",
+      distance: "1.0 km",
+      featured: false,
     },
     {
       id: 6,
-      name: 'Burger Junction',
-      image: '/api/placeholder/300/200',
+      name: "Burger Junction",
+      image: "/api/placeholder/300/200",
       rating: 4.2,
-      deliveryTime: '15-25 min',
-      deliveryFee: '฿18',
-      category: 'fast-food',
-      distance: '0.5 km',
-      featured: false
-    }
+      deliveryTime: "15-25 min",
+      deliveryFee: "฿18",
+      category: "fast-food",
+      distance: "0.5 km",
+      featured: false,
+    },
   ];
 
-  const filteredRestaurants = restaurants.filter(restaurant => {
-    const matchesCategory = selectedCategory === 'all' || restaurant.category === selectedCategory;
-    const matchesSearch = restaurant.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredRestaurants = restaurants.filter((restaurant) => {
+    const matchesCategory =
+      selectedCategory === "all" || restaurant.category === selectedCategory;
+    const matchesSearch = restaurant.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const featuredRestaurants = restaurants.filter(r => r.featured);
+  const featuredRestaurants = restaurants.filter((r) => r.featured);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -158,8 +161,8 @@ const FoodDeliveryPage = () => {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-all flex items-center gap-2 ${
                   selectedCategory === category.id
-                    ? 'bg-orange-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? "bg-orange-500 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 <span className="text-lg">{category.icon}</span>
@@ -171,7 +174,7 @@ const FoodDeliveryPage = () => {
       </section>
 
       {/* Featured Restaurants */}
-      {selectedCategory === 'all' && (
+      {selectedCategory === "all" && (
         <section className="py-12">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
@@ -179,7 +182,7 @@ const FoodDeliveryPage = () => {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredRestaurants.map((restaurant) => (
-                <div 
+                <div
                   key={restaurant.id}
                   className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden"
                 >
@@ -227,23 +230,26 @@ const FoodDeliveryPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-gray-800">
-              {selectedCategory === 'all' ? '🍽️ All Restaurants' : `${categories.find(c => c.id === selectedCategory)?.icon} ${categories.find(c => c.id === selectedCategory)?.name} Restaurants`}
+              {selectedCategory === "all"
+                ? "🍽️ All Restaurants"
+                : `${categories.find((c) => c.id === selectedCategory)?.icon} ${categories.find((c) => c.id === selectedCategory)?.name} Restaurants`}
             </h2>
             <span className="text-gray-600">
               {filteredRestaurants.length} restaurants found
             </span>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredRestaurants.map((restaurant) => (
-              <div 
+              <div
                 key={restaurant.id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden"
               >
                 <div className="relative h-48 bg-gray-200 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
                     <span className="text-gray-600 text-4xl">
-                      {categories.find(c => c.id === restaurant.category)?.icon || '🍽️'}
+                      {categories.find((c) => c.id === restaurant.category)
+                        ?.icon || "🍽️"}
                     </span>
                   </div>
                   {restaurant.featured && (
@@ -293,7 +299,8 @@ const FoodDeliveryPage = () => {
                 Become a Partner
               </h3>
               <p className="text-gray-600 mb-6">
-                Join our network of restaurants and grow your business with Bazaaari
+                Join our network of restaurants and grow your business with
+                Bazaaari
               </p>
               <button className="bg-orange-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors">
                 Register as Partner
