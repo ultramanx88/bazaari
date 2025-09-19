@@ -12,7 +12,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@bazaari/shared": "workspace:*",
+    "@bazaari/shared": "file:../../packages/shared",
     "expo": "~50.0.0",
     "expo-router": "~3.4.0",
     "expo-status-bar": "~1.11.0",

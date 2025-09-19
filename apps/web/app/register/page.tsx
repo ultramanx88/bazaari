@@ -2,22 +2,22 @@
 
 import 'bulma/css/bulma.min.css';
 import { useState, useCallback } from 'react';
-import { getAuth, createUserWithEmailAndPassword, AuthError } from 'firebase/auth';
-import { app } from '../../firebase/firebaseConfig';
-
-const auth = getAuth(app);
+import { useRouter } from 'next/navigation';
 
 interface RegisterFormData {
   email: string;
   password: string;
   confirmPassword: string;
+  name: string;
 }
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    name: ''
   });
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
@@ -36,6 +36,9 @@ export default function RegisterPage() {
   );
 
   const validateForm = (): string | null => {
+    if (!formData.name.trim()) {
+      return 'Name is required.';
+    }
     if (!formData.email.trim()) {
       return 'Email is required.';
     }
@@ -54,21 +57,6 @@ export default function RegisterPage() {
     return null;
   };
 
-  const getErrorMessage = (error: AuthError): string => {
-    switch (error.code) {
-      case 'auth/email-already-in-use':
-        return 'An account with this email already exists.';
-      case 'auth/invalid-email':
-        return 'Please enter a valid email address.';
-      case 'auth/weak-password':
-        return 'Password is too weak. Please choose a stronger password.';
-      case 'auth/operation-not-allowed':
-        return 'Email/password accounts are not enabled. Please contact support.';
-      default:
-        return 'Registration failed. Please try again.';
-    }
-  };
-
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
@@ -84,34 +72,45 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth, 
-        formData.email.trim(), 
-        formData.password
-      );
-      
-      setSuccess('Registration successful! You can now log in to your account.');
-      setFormData({
-        email: '',
-        password: '',
-        confirmPassword: ''
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          password: formData.password,
+        }),
       });
-      
-      console.log('Registration successful!', userCredential.user.uid);
-      
-      // Redirect after successful registration
-      // Example: setTimeout(() => router.push('/login'), 2000);
-      
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess('Registration successful! Redirecting to login...');
+        setFormData({
+          email: '',
+          password: '',
+          confirmPassword: '',
+          name: ''
+        });
+        
+        setTimeout(() => {
+          router.push('/login');
+        }, 2000);
+      } else {
+        setError(data.message || 'Registration failed. Please try again.');
+      }
     } catch (err) {
-      const authError = err as AuthError;
-      setError(getErrorMessage(authError));
-      console.error('Registration error:', authError.code, authError.message);
+      setError('Network error. Please try again.');
+      console.error('Registration error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const isFormValid = formData.email.trim() && 
+  const isFormValid = formData.name.trim() &&
+                     formData.email.trim() && 
                      formData.password && 
                      formData.confirmPassword && 
                      formData.password === formData.confirmPassword;
@@ -148,6 +147,28 @@ export default function RegisterPage() {
                     {success}
                   </div>
                 )}
+
+                <div className="field">
+                  <label className="label" htmlFor="name">
+                    Full Name
+                  </label>
+                  <div className="control has-icons-left">
+                    <input
+                      id="name"
+                      className="input"
+                      type="text"
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleInputChange('name')}
+                      disabled={isLoading}
+                      required
+                      autoComplete="name"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" aria-hidden="true" />
+                    </span>
+                  </div>
+                </div>
 
                 <div className="field">
                   <label className="label" htmlFor="email">

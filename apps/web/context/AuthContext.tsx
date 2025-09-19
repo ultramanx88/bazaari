@@ -1,9 +1,12 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
-import { getUserRole } from "../firebase/getUserRole";
+
+interface User {
+  id: string;
+  email: string;
+  name?: string;
+}
 
 interface AuthContextType {
   user: User | null;
@@ -23,25 +26,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user);
-      
-      if (user) {
-        try {
-          const role = await getUserRole(user.uid);
-          setUserRole(role);
-        } catch (error) {
-          console.error('Error getting user role:', error);
-          setUserRole(null);
-        }
-      } else {
-        setUserRole(null);
-      }
-      
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+    // TODO: Implement auth state management with Prisma/JWT
+    // For now, just set loading to false
+    setLoading(false);
   }, []);
 
   return (

@@ -2,13 +2,7 @@
 
 import 'bulma/css/bulma.min.css';
 import { useState, useCallback } from 'react';
-import { getAuth, signInWithEmailAndPassword, AuthError } from 'firebase/auth';
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { firebaseConfig } from '../../firebase/firebaseConfig';
-
-// Initialize Firebase app once (singleton pattern)
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
+import { useRouter } from 'next/navigation';
 
 interface LoginFormData {
   email: string;
@@ -16,6 +10,7 @@ interface LoginFormData {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -34,23 +29,6 @@ export default function LoginPage() {
     }, [error]
   );
 
-  const getErrorMessage = (error: AuthError): string => {
-    switch (error.code) {
-      case 'auth/user-not-found':
-        return 'No account found with this email address.';
-      case 'auth/wrong-password':
-        return 'Incorrect password. Please try again.';
-      case 'auth/invalid-email':
-        return 'Please enter a valid email address.';
-      case 'auth/user-disabled':
-        return 'This account has been disabled.';
-      case 'auth/too-many-requests':
-        return 'Too many failed attempts. Please try again later.';
-      default:
-        return 'Login failed. Please check your credentials and try again.';
-    }
-  };
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
@@ -63,21 +41,29 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth, 
-        formData.email.trim(), 
-        formData.password
-      );
-      
-      console.log('Login successful!', userCredential.user.uid);
-      
-      // Redirect or handle successful login here
-      // Example: router.push('/dashboard');
-      
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email.trim(),
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store token in localStorage or cookie
+        localStorage.setItem('token', data.token);
+        router.push('/dashboard');
+      } else {
+        setError(data.message || 'Login failed. Please try again.');
+      }
     } catch (err) {
-      const authError = err as AuthError;
-      setError(getErrorMessage(authError));
-      console.error('Login error:', authError.code, authError.message);
+      setError('Network error. Please try again.');
+      console.error('Login error:', err);
     } finally {
       setIsLoading(false);
     }
@@ -163,6 +149,9 @@ export default function LoginPage() {
                   <p className="is-size-7 has-text-grey">
                     Don't have an account? 
                     <a href="/register" className="has-text-primary"> Sign up</a>
+                  </p>
+                  <p className="is-size-7 has-text-grey mt-2">
+                    <a href="/forgot-password" className="has-text-primary">Forgot password?</a>
                   </p>
                 </div>
               </form>

@@ -40,23 +40,18 @@ export default function Navbar() {
 
             <div className="navbar-item">
               <div className="buttons">
-                {/* ตรงนี้ให้แก้เป็นปุ่ม login/register ของ Firebase Auth เอง */}
-                <button
+                <a
+                  href="/login"
                   className="button is-small is-rounded is-light"
-                  onClick={() => {
-                    // เปิด modal login Firebase หรือ redirect ไปหน้า login
-                  }}
                 >
                   Login
-                </button>
-                <button
+                </a>
+                <a
+                  href="/register"
                   className="button is-small is-rounded is-primary ml-2"
-                  onClick={() => {
-                    // เปิด modal register Firebase หรือ redirect ไปหน้า register
-                  }}
                 >
                   Register
-                </button>
+                </a>
               </div>
             </div>
           </div>
