@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Visa Services
+Allow: /visa-services
+Allow: /visa-services/*
+
+# Sitemaps
+Sitemap: https://bazaari.com/sitemap.xml
+Sitemap: https://bazaari.com/visa-services/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important pages
+Allow: /visa-services
+Allow: /hotels
+Allow: /food-delivery
+Allow: /healthcare
+Allow: /real-estate
+Allow: /shopping
+Allow: /spa-massage

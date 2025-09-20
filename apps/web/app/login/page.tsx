@@ -1,6 +1,6 @@
-'use client';
-import { useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 interface LoginFormData {
   email: string;
@@ -10,39 +10,41 @@ interface LoginFormData {
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState<LoginFormData>({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleInputChange = useCallback((field: keyof LoginFormData) => 
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFormData(prev => ({
-        ...prev,
-        [field]: e.target.value
-      }));
-      // Clear error when user starts typing
-      if (error) setError('');
-    }, [error]
+  const handleInputChange = useCallback(
+    (field: keyof LoginFormData) =>
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData((prev) => ({
+          ...prev,
+          [field]: e.target.value,
+        }));
+        // Clear error when user starts typing
+        if (error) setError("");
+      },
+    [error]
   );
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!formData.email.trim() || !formData.password.trim()) {
-      setError('Please fill in all fields.');
+      setError("Please fill in all fields.");
       return;
     }
 
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: formData.email.trim(),
@@ -54,14 +56,14 @@ export default function LoginPage() {
 
       if (response.ok) {
         // Store token in localStorage or cookie
-        localStorage.setItem('token', data.token);
-        router.push('/dashboard');
+        localStorage.setItem("token", data.token);
+        router.push("/dashboard");
       } else {
-        setError(data.message || 'Login failed. Please try again.');
+        setError(data.message || "Login failed. Please try again.");
       }
     } catch (err) {
-      setError('Network error. Please try again.');
-      console.error('Login error:', err);
+      setError("Network error. Please try again.");
+      console.error("Login error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -78,10 +80,10 @@ export default function LoginPage() {
 
                 {error && (
                   <div className="notification is-danger is-light">
-                    <button 
-                      className="delete" 
+                    <button
+                      className="delete"
                       type="button"
-                      onClick={() => setError('')}
+                      onClick={() => setError("")}
                       aria-label="Close notification"
                     />
                     {error}
@@ -99,7 +101,7 @@ export default function LoginPage() {
                       type="email"
                       placeholder="you@example.com"
                       value={formData.email}
-                      onChange={handleInputChange('email')}
+                      onChange={handleInputChange("email")}
                       disabled={isLoading}
                       required
                       autoComplete="email"
@@ -121,7 +123,7 @@ export default function LoginPage() {
                       type="password"
                       placeholder="••••••••"
                       value={formData.password}
-                      onChange={handleInputChange('password')}
+                      onChange={handleInputChange("password")}
                       disabled={isLoading}
                       required
                       autoComplete="current-password"
@@ -134,22 +136,31 @@ export default function LoginPage() {
                 </div>
 
                 <div className="field">
-                  <button 
-                    className={`button is-primary is-fullwidth ${isLoading ? 'is-loading' : ''}`}
+                  <button
+                    className={`button is-primary is-fullwidth ${isLoading ? "is-loading" : ""}`}
                     type="submit"
-                    disabled={isLoading || !formData.email.trim() || !formData.password.trim()}
+                    disabled={
+                      isLoading ||
+                      !formData.email.trim() ||
+                      !formData.password.trim()
+                    }
                   >
-                    {isLoading ? 'Logging in...' : 'Log In'}
+                    {isLoading ? "Logging in..." : "Log In"}
                   </button>
                 </div>
 
                 <div className="has-text-centered">
                   <p className="is-size-7 has-text-grey">
-                    Don't have an account? 
-                    <a href="/register" className="has-text-primary"> Sign up</a>
+                    Don't have an account?
+                    <a href="/register" className="has-text-primary">
+                      {" "}
+                      Sign up
+                    </a>
                   </p>
                   <p className="is-size-7 has-text-grey mt-2">
-                    <a href="/forgot-password" className="has-text-primary">Forgot password?</a>
+                    <a href="/forgot-password" className="has-text-primary">
+                      Forgot password?
+                    </a>
                   </p>
                 </div>
               </form>
