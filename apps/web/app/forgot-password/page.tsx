@@ -1,6 +1,4 @@
 'use client';
-
-import 'bulma/css/bulma.min.css';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
