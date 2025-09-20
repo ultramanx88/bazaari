@@ -4,28 +4,28 @@ import Link from 'next/link';
 
 export default function HeroBanner() {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+    <section className="bg-gradient-hero text-white py-20">
       <div className="main-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Your All-in-One
-              <span className="block text-yellow-300">Service Platform</span>
+              <span className="block text-accent">Service Platform</span>
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-light-100">
               From food delivery to real estate, spa services to visa assistance - 
               everything you need in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 href="/services" 
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
+                className="bg-accent text-dark px-8 py-4 rounded-lg font-semibold hover:bg-accent-600 transition-colors text-center"
               >
                 Explore Services
               </Link>
               <Link 
                 href="/partner" 
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-center"
+                className="border-2 border-accent text-accent px-8 py-4 rounded-lg font-semibold hover:bg-accent hover:text-dark transition-colors text-center"
               >
                 Become a Partner
               </Link>

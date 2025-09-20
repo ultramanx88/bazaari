@@ -54,7 +54,7 @@ export default function Navbar() {
               onKeyUp={(e) => e.key === 'Enter' && searchProducts()}
             />
             <button 
-              className="bg-primary-600 h-full w-14 border-none absolute top-0 right-0 rounded-r-lg flex items-center justify-center"
+              className="bg-primary h-full w-14 border-none absolute top-0 right-0 rounded-r-lg flex items-center justify-center"
               onClick={searchProducts}
             >
               <MagnifyingGlassIcon className="w-6 h-6 text-white" />
@@ -79,7 +79,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          <Link href="/login" className="flex items-center gap-2 lg:p-2.5 text-slate-600 hover:text-primary">
+          <Link href="/login" className="flex items-center gap-2 lg:p-2.5 text-dark-600 hover:text-primary">
             <span className="text-base font-normal leading-normal">Login</span>
             <UserIcon className="w-5 h-5" />
           </Link>
@@ -111,25 +111,25 @@ export default function Navbar() {
       <div className="border-t border-gray-200">
         <div className="main-container py-3">
           <div className="flex items-center gap-8 overflow-x-auto">
-            <Link href="/food-delivery" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/food-delivery" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Food Delivery
             </Link>
-            <Link href="/hotels" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/hotels" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Hotels
             </Link>
-            <Link href="/spa-massage" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/spa-massage" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Spa & Massage
             </Link>
-            <Link href="/visa-services" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/visa-services" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Visa Services
             </Link>
-            <Link href="/healthcare" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/healthcare" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Healthcare
             </Link>
-            <Link href="/real-estate" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/real-estate" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Real Estate
             </Link>
-            <Link href="/shopping" className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+            <Link href="/shopping" className="text-sm font-medium text-dark hover:text-primary whitespace-nowrap">
               Shopping
             </Link>
           </div>

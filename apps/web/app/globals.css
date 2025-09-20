@@ -1,27 +1,16 @@
-@import '../styles/ogani-theme.css';
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #3B82F6;
-  --primary-50: #EFF6FF;
-  --primary-100: #DBEAFE;
-  --primary-200: #BFDBFE;
-  --primary-300: #93C5FD;
-  --primary-400: #60A5FA;
-  --primary-500: #3B82F6;
-  --primary-600: #2563EB;
-  --primary-700: #1D4ED8;
-  --primary-800: #1E40AF;
-  --primary-900: #1E3A8A;
-  --primary-950: #172554;
+  --primary: #1e40af;
+  --secondary: #87ceeb;
+  --accent: #ffd700;
+  --dark: #374151;
+  --light: #ffffff;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-}
+
 
 .main-container {
   @apply px-4 md:px-8 lg:px-16;
@@ -39,58 +28,41 @@ body {
   @apply bg-primary text-white border-primary hover:bg-primary;
 }
 
-/* Custom primary colors */
+/* Custom theme colors */
 .bg-primary {
-  background-color: var(--primary-600);
+  background-color: var(--primary);
 }
 
 .text-primary {
-  color: var(--primary-600);
+  color: var(--primary);
 }
 
 .border-primary {
-  border-color: var(--primary-600);
+  border-color: var(--primary);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.text-accent {
+  color: var(--accent);
 }
 
 .hover\:bg-primary:hover {
-  background-color: var(--primary-700);
+  background-color: var(--primary);
+  opacity: 0.9;
 }
 
 .hover\:text-primary:hover {
-  color: var(--primary-600);
+  color: var(--primary);
 }
 
 .focus\:border-primary:focus {
-  border-color: var(--primary-600);
-}
-
-/* Override Tailwind with our theme */
-:root {
-  --foreground-rgb: 28, 28, 28;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  border-color: var(--primary);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
+  color: #1f2937;
 }
