@@ -1,33 +1,4 @@
-'use client';
-
-import { UserButton, useUser } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-
 export default function DashboardPage() {
-  const { user, isLoaded } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (isLoaded && !user) {
-      router.push('/login');
-    }
-  }, [isLoaded, user, router]);
-
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return null;
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -42,9 +13,11 @@ export default function DashboardPage() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
-                Welcome, {user.firstName || user.emailAddresses?.[0]?.emailAddress}
+                Welcome, Guest User
               </span>
-              <UserButton afterSignOutUrl="/" />
+              <a href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+                Sign In
+              </a>
             </div>
           </div>
         </div>
@@ -62,7 +35,7 @@ export default function DashboardPage() {
                   <div className="flex-shrink-0">
                     <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                       <span className="text-white font-semibold">
-                        {user.firstName?.charAt(0) || user.emailAddresses?.[0]?.emailAddress?.charAt(0)}
+                        G
                       </span>
                     </div>
                   </div>
@@ -111,13 +84,13 @@ export default function DashboardPage() {
                   <div>
                     <span className="text-sm text-gray-500">Email:</span>
                     <p className="text-sm font-medium text-gray-900">
-                      {user.emailAddresses?.[0]?.emailAddress}
+                      guest@bazaari.com
                     </p>
                   </div>
                   <div>
                     <span className="text-sm text-gray-500">Member since:</span>
                     <p className="text-sm font-medium text-gray-900">
-                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+                      Today
                     </p>
                   </div>
                 </div>
