@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Minimal configuration to avoid build issues
-  swcMinify: true,
+  // Use static export to avoid server-side rendering issues
+  output: 'export',
+  trailingSlash: true,
   
-  // Skip static optimization for problematic pages
-  experimental: {
-    skipTrailingSlashRedirect: true,
-    skipMiddlewareUrlNormalize: true,
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
   },
   
   // Environment variables
@@ -19,6 +19,9 @@ const nextConfig = {
     config.infrastructureLogging = { level: 'error' };
     return config;
   },
+  
+  // Generate build ID
+  generateBuildId: () => 'bazaari-static-' + Date.now(),
 };
 
 module.exports = nextConfig;
