@@ -1,20 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable static export to avoid styled-jsx issues
+  output: 'standalone',
+  
   // Performance optimizations
   swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
-    styledComponents: true,
   },
-  
-  // Reduce build warnings
-  onDemandEntries: {
-    maxInactiveAge: 25 * 1000,
-    pagesBufferLength: 2,
-  },
-  
-  // Fix styled-jsx issues
-  transpilePackages: ['styled-jsx'],
   
   // Image optimization
   images: {
@@ -27,17 +20,9 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080',
   },
   
-  // Performance optimizations
+  // Disable experimental features that might cause issues
   experimental: {
-    webpackBuildWorker: true,
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    serverComponentsExternalPackages: ['styled-jsx'],
   },
   
   // Webpack optimizations
@@ -47,21 +32,7 @@ const nextConfig = {
       level: 'error',
     };
     
-    // Fix styled-jsx issues
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'styled-jsx/style': require.resolve('styled-jsx/style'),
-    };
-    
-    if (dev && !isServer) {
-      // Faster development builds
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-      };
-    }
-    
-    // Optimize bundle splitting
+    // Exclude styled-jsx from optimization
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
@@ -82,11 +53,6 @@ const nextConfig = {
     }
     
     return config;
-  },
-  
-  // Skip problematic static generation for error pages
-  generateBuildId: async () => {
-    return 'bazaari-build-' + Date.now();
   },
 };
 
