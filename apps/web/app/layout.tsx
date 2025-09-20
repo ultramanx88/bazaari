@@ -7,17 +7,9 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  fallback: ['system-ui', 'arial'],
-});
 
 export const metadata: Metadata = {
   title: 'Bazaari - Your Multi-Service Platform',
@@ -32,7 +24,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.variable} font-inter antialiased`}>
+        <body className="font-sans antialiased" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
           <header className="flex justify-between items-center p-4 gap-4 h-16 bg-white shadow-sm border-b">
             <div className="flex items-center">
               <a href="/" className="text-2xl font-bold text-blue-600">

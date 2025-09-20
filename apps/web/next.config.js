@@ -1,13 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Use static export to avoid server-side rendering issues
-  output: 'export',
-  trailingSlash: true,
-  
-  // Disable image optimization for static export
-  images: {
-    unoptimized: true,
-  },
+  // Use standalone output for Vercel
+  output: 'standalone',
   
   // Environment variables
   env: {
@@ -21,7 +15,7 @@ const nextConfig = {
   },
   
   // Generate build ID
-  generateBuildId: () => 'bazaari-static-' + Date.now(),
+  generateBuildId: () => 'bazaari-' + Date.now(),
 };
 
 module.exports = nextConfig;
