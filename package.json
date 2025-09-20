@@ -4,10 +4,10 @@
   "private": true,
   "description": "Multi-service platform: Food delivery, Hotels, Spa, Visa services, Healthcare, Real estate, Marketplace",
   "scripts": {
-    "build": "cd apps/web && npm run build",
+    "build": "npm install && cd apps/web && npm install && npm run build",
     "dev": "cd apps/web && npm run dev",
     "start": "cd apps/web && npm start",
-    "vercel-build": "cd apps/web && npm run build",
+    "vercel-build": "npm install && cd apps/web && npm install && npm run build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,go}\"",
     "check-types": "turbo run check-types",
