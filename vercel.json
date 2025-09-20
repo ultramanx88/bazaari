@@ -1,10 +1,25 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/web/$1"
+    }
+  ],
   "env": {
-    "PRISMA_DATABASE_URL": "@prisma_database_url",
-    "POSTGRES_URL": "@postgres_url", 
-    "NEXTAUTH_SECRET": "@nextauth_secret"
+    "DATABASE_URL": "@database-url",
+    "NEXT_PUBLIC_API_URL": "@next-public-api-url",
+    "JWT_SECRET": "@jwt-secret"
+  },
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database-url"
+    }
   }
 }

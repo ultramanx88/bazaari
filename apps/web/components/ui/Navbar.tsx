@@ -2,14 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { 
-  MagnifyingGlassIcon, 
-  Bars3Icon, 
-  XMarkIcon,
-  UserIcon,
-  HeartIcon,
-  ShoppingBagIcon
-} from '@heroicons/react/24/outline';
+// Using inline SVGs instead of Heroicons to avoid TypeScript issues
 
 export default function Navbar() {
   const [showSearch, setShowSearch] = useState(false);
@@ -57,7 +50,9 @@ export default function Navbar() {
               className="bg-primary h-full w-14 border-none absolute top-0 right-0 rounded-r-lg flex items-center justify-center"
               onClick={searchProducts}
             >
-              <MagnifyingGlassIcon className="w-6 h-6 text-white" />
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </button>
           </div>
         </div>
@@ -65,14 +60,18 @@ export default function Navbar() {
         <div className="hidden md:flex items-center justify-end md:gap-4 lg:gap-8">
           <div className="flex items-center md:gap-1 lg:gap-3">
             <button className="p-2.5 cursor-pointer relative">
-              <HeartIcon className="w-6 h-6 text-gray-600" />
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
               <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
                 0
               </span>
             </button>
 
             <button className="p-2.5 relative">
-              <ShoppingBagIcon className="w-6 h-6 text-gray-600" />
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
               <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
                 0
               </span>
@@ -81,7 +80,9 @@ export default function Navbar() {
 
           <Link href="/login" className="flex items-center gap-2 lg:p-2.5 text-dark-600 hover:text-primary">
             <span className="text-base font-normal leading-normal">Login</span>
-            <UserIcon className="w-5 h-5" />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
           </Link>
         </div>
 
@@ -91,18 +92,24 @@ export default function Navbar() {
             className="h-10 w-10 flex items-center justify-center bg-slate-100 rounded-[40px]" 
             onClick={() => setShowSearch(!showSearch)}
           >
-            <MagnifyingGlassIcon className="w-5 h-5 text-slate-950" />
+            <svg className="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
 
           <button className="pl-1 relative">
-            <ShoppingBagIcon className="w-6 h-6 text-gray-600" />
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
               0
             </span>
           </button>
 
           <div className="h-10 w-10 flex items-center justify-end" onClick={() => setMobileMenuOpen(true)}>
-            <Bars3Icon className="w-6 h-6 text-slate-950" />
+            <svg className="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </div>
         </div>
       </div>
@@ -143,7 +150,9 @@ export default function Navbar() {
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-medium">Search</span>
               <button onClick={() => setShowSearch(false)}>
-                <XMarkIcon className="w-6 h-6" />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
             <input 
@@ -171,13 +180,17 @@ export default function Navbar() {
             <div className="flex justify-between items-center mb-6">
               <span className="text-lg font-bold">Menu</span>
               <button onClick={() => setMobileMenuOpen(false)}>
-                <XMarkIcon className="w-6 h-6" />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
             
             <div className="space-y-4">
               <Link href="/login" className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                <UserIcon className="w-5 h-5" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
                 <span>Login</span>
               </Link>
               

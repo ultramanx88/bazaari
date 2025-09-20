@@ -2,28 +2,35 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15
+    container_name: bazaari-postgres
+    restart: always
     environment:
-      POSTGRES_DB: bazaari
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: prisma-postgres-bazaari
+      POSTGRES_USER: bazaari_user
+      POSTGRES_PASSWORD: bazaari_password
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - bazaari-network
 
-  backend:
-    build: ./backend
+  adminer:
+    image: adminer
+    container_name: bazaari-adminer
+    restart: always
     ports:
       - "8080:8080"
-    environment:
-      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/bazaari?sslmode=disable"
-      JWT_SECRET: "your-secret-key"
+    networks:
+      - bazaari-network
     depends_on:
       - postgres
-    volumes:
-      - ./backend:/app
-    working_dir: /app
 
 volumes:
   postgres_data:
+
+networks:
+  bazaari-network:
+    driver: bridge

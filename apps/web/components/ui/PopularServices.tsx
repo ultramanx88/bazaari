@@ -65,16 +65,16 @@ export default function PopularServices() {
       <div className="main-container">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-dark mb-4">
               Popular Services
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-dark-500">
               Most requested services by our customers
             </p>
           </div>
           <Link 
             href="/services" 
-            className="hidden md:block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+            className="hidden md:block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors"
           >
             View All Services
           </Link>
@@ -89,16 +89,16 @@ export default function PopularServices() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="text-4xl">{service.image}</div>
-                  <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">
+                  <span className="bg-light-100 text-dark-500 px-3 py-1 rounded-full text-sm">
                     {service.category}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold text-dark mb-2 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-dark-500 mb-4 text-sm">
                   {service.description}
                 </p>
                 
@@ -107,7 +107,7 @@ export default function PopularServices() {
                     <div className="flex text-yellow-400">
                       {'★'.repeat(Math.floor(service.rating))}
                     </div>
-                    <span className="text-sm text-gray-600">{service.rating}</span>
+                    <span className="text-sm text-dark-500">{service.rating}</span>
                   </div>
                   <div className="text-lg font-semibold text-primary">
                     {service.price}
@@ -116,7 +116,7 @@ export default function PopularServices() {
               </div>
               
               <div className="px-6 pb-6">
-                <button className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
+                <button className="w-full bg-light-100 text-dark py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
                   Book Now
                 </button>
               </div>
@@ -127,7 +127,7 @@ export default function PopularServices() {
         <div className="text-center mt-8 md:hidden">
           <Link 
             href="/services" 
-            className="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors inline-block"
+            className="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-600 transition-colors inline-block"
           >
             View All Services
           </Link>
