@@ -4,7 +4,7 @@ import { Providers } from './providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
-  title: 'Bazaari - Your Multi-Service Platform',
+  title: 'Bazaari - Indian Super Service Platform in Thailand',
   description: 'Food delivery, Hotels, Spa, Visa services, Healthcare, Real estate, Marketplace - all in one platform',
 };
 
@@ -19,7 +19,7 @@ export default function RootLayout({
         <header className="flex justify-between items-center p-4 gap-4 h-16 bg-white shadow-sm border-b">
           <div className="flex items-center">
             <a href="/" className="text-2xl font-bold text-blue-600">
-              Bazaari
+              bazaari
             </a>
           </div>
           <div className="flex items-center gap-4">
