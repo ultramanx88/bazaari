@@ -1,37 +1,35 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable static generation completely
+  // Standalone output for deployment
   output: 'standalone',
-  
-  // Skip static optimization
-  experimental: {
-    appDir: true,
-    serverComponentsExternalPackages: ['styled-jsx'],
-  },
   
   // Environment variables
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080',
   },
   
-  // Webpack config to handle styled-jsx
-  webpack: (config, { isServer }) => {
-    config.infrastructureLogging = { level: 'error' };
-    
-    // Completely exclude styled-jsx from server builds
-    if (isServer) {
-      config.externals = config.externals || [];
-      config.externals.push({
-        'styled-jsx': 'styled-jsx',
-        'styled-jsx/style': 'styled-jsx/style'
-      });
+  // Enable webpack build worker for faster builds
+  experimental: {
+    webpackBuildWorker: true,
+  },
+  
+  // Optimized webpack config
+  webpack: (config, { dev, isServer }) => {
+    // Only apply optimizations in production
+    if (!dev) {
+      config.infrastructureLogging = { level: 'error' };
+      
+      // Enable webpack caching for faster rebuilds
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+      };
     }
     
     return config;
   },
-  
-  // Custom page extensions to avoid conflicts
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   
   // Generate build ID
   generateBuildId: () => 'bazaari-' + Date.now(),
