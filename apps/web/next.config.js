@@ -13,6 +13,12 @@ const nextConfig = {
     webpackBuildWorker: true,
   },
   
+  // SWC compiler options for Windows compatibility
+  compiler: {
+    // Remove console logs in production
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
   // Optimized webpack config
   webpack: (config, { dev, isServer }) => {
     // Only apply optimizations in production

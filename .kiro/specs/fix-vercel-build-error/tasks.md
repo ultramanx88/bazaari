@@ -36,6 +36,8 @@
 
 
 
+
+
   - Run `npm run build` to verify no React context errors occur
   - Verify all pages generate successfully during static generation
   - Test that error pages can be accessed without throwing context errors
