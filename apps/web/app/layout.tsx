@@ -28,6 +28,12 @@ export default function RootLayout({
           </div>
           <div className="flex items-center gap-4">
             <a
+              href="/admin/email"
+              className="text-gray-600 hover:text-blue-600 font-medium text-sm"
+            >
+              Admin
+            </a>
+            <a
               href="/partner"
               className="text-gray-600 hover:text-blue-600 font-medium text-sm"
             >

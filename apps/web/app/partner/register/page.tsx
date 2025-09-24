@@ -57,15 +57,31 @@ export default function PartnerRegisterPage() {
       return;
     }
     
-    // Here you would typically send the data to your API
-    console.log('Partner registration data:', formData);
-    
-    // For now, just show success message
-    alert('Partner registration submitted successfully! We will review your application and contact you within 2-3 business days.');
-    
-    // Clear localStorage and redirect
-    localStorage.removeItem('partner_terms_agreed');
-    router.push('/');
+    try {
+      // Send partner registration data to API
+      const response = await fetch('/api/partner/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Partner registration submitted successfully! We will review your application and contact you within 2-3 business days. A confirmation email has been sent to your email address.');
+        
+        // Clear localStorage and redirect
+        localStorage.removeItem('partner_terms_agreed');
+        router.push('/');
+      } else {
+        alert(`Registration failed: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      alert('Failed to submit registration. Please try again.');
+    }
   };
 
   if (!termsAgreed) {
