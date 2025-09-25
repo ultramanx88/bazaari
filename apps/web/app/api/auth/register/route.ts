@@ -4,18 +4,18 @@ import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password } = await request.json();
+    const { firstName, lastName, email, phone, password } = await request.json();
 
-    if (!name || !email || !password) {
+    if (!firstName || !lastName || !email || !phone || !password) {
       return NextResponse.json(
-        { message: 'Name, email, and password are required' },
+        { success: false, error: 'All fields are required' },
         { status: 400 }
       );
     }
 
     if (password.length < 6) {
       return NextResponse.json(
-        { message: 'Password must be at least 6 characters long' },
+        { success: false, error: 'Password must be at least 6 characters long' },
         { status: 400 }
       );
     }
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { message: 'User with this email already exists' },
+        { success: false, error: 'User with this email already exists' },
         { status: 409 }
       );
     }
@@ -36,17 +36,28 @@ export async function POST(request: NextRequest) {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     // Create user
+    const fullName = `${firstName} ${lastName}`;
     const user = await prisma.user.create({
       data: {
-        name,
+        name: fullName,
         email,
         password: hashedPassword,
         role: 'user'
       }
     });
 
+    // Generate JWT token for immediate login
+    const jwt = require('jsonwebtoken');
+    const token = jwt.sign(
+      { userId: user.id, email: user.email, role: user.role },
+      process.env.NEXTAUTH_SECRET || 'fallback-secret',
+      { expiresIn: '7d' }
+    );
+
     return NextResponse.json({
-      message: 'User created successfully',
+      success: true,
+      message: 'Account created successfully',
+      token,
       user: {
         id: user.id,
         email: user.email,
@@ -58,7 +69,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Registration error:', error);
     return NextResponse.json(
-      { message: 'Internal server error' },
+      { success: false, error: 'Internal server error' },
       { status: 500 }
     );
   }
