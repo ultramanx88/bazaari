@@ -4,9 +4,23 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import AuthGuard from '../../../components/auth/AuthGuard';
 
+interface Restaurant {
+  id: string;
+  name: string;
+  description: string;
+  heroImage: string;
+  gallery: string[];
+  rating: number;
+  totalReviews: number;
+  priceRange: string;
+  cuisine: string;
+  isOpen: boolean;
+  branches: any[];
+}
+
 export default function RestaurantDetail() {
   const params = useParams();
-  const [restaurant, setRestaurant] = useState(null);
+  const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
   const [selectedBranch, setSelectedBranch] = useState(0);
 
   useEffect(() => {
