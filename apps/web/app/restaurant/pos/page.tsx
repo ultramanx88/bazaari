@@ -3,8 +3,20 @@
 import { useState } from 'react';
 import AuthGuard from '../../../components/auth/AuthGuard';
 
+interface MenuItem {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  image: string;
+}
+
+interface CartItem extends MenuItem {
+  quantity: number;
+}
+
 export default function RestaurantPOS() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [orderType, setOrderType] = useState('dine_in');
   const [customerInfo, setCustomerInfo] = useState({ name: '', phone: '', table: '' });
@@ -26,7 +38,7 @@ export default function RestaurantPOS() {
     { id: '6', name: 'Gulab Jamun', price: 70, category: 'desserts', image: '🍰' }
   ];
 
-  const addToCart = (item) => {
+  const addToCart = (item: MenuItem) => {
     const existingItem = cart.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
       setCart(cart.map(cartItem =>
