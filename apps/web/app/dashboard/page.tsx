@@ -263,8 +263,6 @@ export default function DashboardPage() {
                 </a>
               </div>
             </div>
-
-            </div>
           </div>
         </div>
       </main>
