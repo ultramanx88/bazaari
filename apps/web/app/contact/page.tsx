@@ -7,7 +7,6 @@ export default function ContactPage() {
   return (
     <AuthGuard requireAuth={true}>
       <div className="min-h-screen">
-      <Header />
       
       {/* Contact Hero Section */}
       <section className="py-20 bg-theme-gradient">
