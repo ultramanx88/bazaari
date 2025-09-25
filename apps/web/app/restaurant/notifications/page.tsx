@@ -3,8 +3,20 @@
 import { useState, useEffect } from 'react';
 import AuthGuard from '../../../components/auth/AuthGuard';
 
+interface Notification {
+  id: string;
+  type: string;
+  title: string;
+  message: string;
+  branch: string;
+  timestamp: string;
+  read: boolean;
+  priority: string;
+  data?: any;
+}
+
 export default function RestaurantNotifications() {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
