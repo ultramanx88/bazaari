@@ -72,8 +72,10 @@ export default function RegisterPage() {
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('token', result.token);
         
-        // Redirect to dashboard
-        router.push('/dashboard');
+        // Redirect to intended page or dashboard
+        const returnUrl = localStorage.getItem('returnUrl') || '/dashboard';
+        localStorage.removeItem('returnUrl'); // Clean up
+        router.push(returnUrl);
       } else {
         setError(result.error || 'Registration failed');
       }

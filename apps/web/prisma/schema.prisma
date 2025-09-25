@@ -16,10 +16,146 @@ model User {
   name      String?
   password  String
   role      String   @default("user")
+  phone     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Restaurant relationships
+  ownedRestaurants Restaurant[] @relation("RestaurantOwner")
+  staffAt          RestaurantStaff[]
+  orders           Order[]
+
   @@map("users")
+}
+
+model Restaurant {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  heroImage   String?
+  gallery     String[]
+  address     String
+  phone       String
+  email       String?
+  isActive    Boolean  @default(true)
+  isOpen      Boolean  @default(true)
+  rating      Float    @default(0)
+  totalOrders Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Owner relationship
+  ownerId String
+  owner   User   @relation("RestaurantOwner", fields: [ownerId], references: [id])
+
+  // Related models
+  branches     RestaurantBranch[]
+  staff        RestaurantStaff[]
+  categories   MenuCategory[]
+  menuItems    MenuItem[]
+  orders       Order[]
+  openingHours OpeningHours[]
+
+  @@map("restaurants")
+}
+
+model RestaurantBranch {
+  id           String   @id @default(cuid())
+  name         String
+  address      String
+  phone        String
+  isActive     Boolean  @default(true)
+  managerId    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  staff        RestaurantStaff[]
+  orders       Order[]
+  openingHours OpeningHours[]
+
+  @@map("restaurant_branches")
+}
+
+model RestaurantStaff {
+  id           String   @id @default(cuid())
+  role         String   // owner, manager, staff, cashier, kitchen
+  permissions  String[] // array of permission strings
+  isActive     Boolean  @default(true)
+  joinDate     DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  branchId     String?
+  branch       RestaurantBranch? @relation(fields: [branchId], references: [id])
+
+  @@unique([userId, restaurantId])
+  @@map("restaurant_staff")
+}
+
+model OpeningHours {
+  id        String   @id @default(cuid())
+  dayOfWeek Int      // 0 = Sunday, 1 = Monday, etc.
+  openTime  String   // "09:00"
+  closeTime String   // "22:00"
+  isClosed  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  restaurantId String?
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
+  branchId     String?
+  branch       RestaurantBranch? @relation(fields: [branchId], references: [id])
+
+  @@map("opening_hours")
+}
+
+model MenuCategory {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  image       String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  menuItems    MenuItem[]
+
+  @@map("menu_categories")
+}
+
+model MenuItem {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  image       String?
+  price       Float
+  deliveryPrice Float? // Different price for delivery
+  isAvailable Boolean  @default(true)
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  ingredients String[]
+  allergens   String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  categoryId   String
+  category     MenuCategory @relation(fields: [categoryId], references: [id])
+
+  orderItems OrderItem[]
+
+  @@map("menu_items")
 }
 
 model Service {
@@ -36,13 +172,42 @@ model Service {
 }
 
 model Order {
-  id        String   @id @default(cuid())
-  userId    String
-  serviceId String
-  status    String   @default("pending")
-  total     Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  orderNumber  String   @unique
+  status       String   @default("pending") // pending, confirmed, preparing, ready, delivered, cancelled
+  orderType    String   @default("delivery") // delivery, pickup, dine-in
+  subtotal     Float
+  deliveryFee  Float    @default(0)
+  tax          Float    @default(0)
+  total        Float
+  notes        String?
+  deliveryAddress String?
+  estimatedTime Int? // minutes
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  customerId   String
+  customer     User       @relation(fields: [customerId], references: [id])
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  branchId     String?
+  branch       RestaurantBranch? @relation(fields: [branchId], references: [id])
+
+  orderItems   OrderItem[]
 
   @@map("orders")
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  quantity Int
+  price    Float
+  notes    String?
+
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id])
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+
+  @@map("order_items")
 }

@@ -219,6 +219,52 @@ export default function DashboardPage() {
               </a>
 
             </div>
+
+            {/* Restaurant Management Section */}
+            <div className="mt-8 bg-blue-50 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Restaurant Management</h3>
+              <p className="text-gray-600 mb-4">Manage your restaurant business on Bazaari</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/restaurant" className="group">
+                  <div className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <div className="text-2xl mb-2">🏪</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-blue-600">
+                      Restaurant Dashboard
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Manage your restaurant
+                    </p>
+                  </div>
+                </a>
+
+                <a href="/restaurant/users" className="group">
+                  <div className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <div className="text-2xl mb-2">👥</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-blue-600">
+                      Staff & Branches
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Manage team and locations
+                    </p>
+                  </div>
+                </a>
+
+                <a href="/restaurant/menu" className="group">
+                  <div className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <div className="text-2xl mb-2">📋</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-blue-600">
+                      Menu Management
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Manage menu items
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            </div>
           </div>
         </div>
       </main>

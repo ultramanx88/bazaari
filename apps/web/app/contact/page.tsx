@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import AuthGuard from '../../components/auth/AuthGuard';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen">
+    <AuthGuard requireAuth={true}>
+      <div className="min-h-screen">
       <Header />
       
       {/* Contact Hero Section */}
@@ -186,8 +188,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+      </div>
+    </AuthGuard>
   );
 }

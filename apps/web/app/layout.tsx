@@ -40,6 +40,12 @@ export default function RootLayout({
               Become Partner
             </a>
             <a
+              href="/dashboard"
+              className="text-gray-600 hover:text-blue-600 font-medium text-sm"
+            >
+              Dashboard
+            </a>
+            <a
               href="/login"
               className="text-gray-600 hover:text-blue-600 font-medium text-sm"
             >

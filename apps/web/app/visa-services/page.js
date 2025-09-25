@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import AuthGuard from '../../components/auth/AuthGuard';
 import { structuredData } from './structured-data';
 
 const VisaServicesPage = () => {

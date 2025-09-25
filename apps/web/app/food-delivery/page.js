@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import AuthGuard from "../../components/auth/AuthGuard";
+import LoginPrompt from "../../components/auth/LoginPrompt";
 
 const FoodDeliveryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -98,7 +100,8 @@ const FoodDeliveryPage = () => {
   const featuredRestaurants = restaurants.filter((r) => r.featured);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <AuthGuard requireAuth={true}>
+      <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-orange-500 to-red-600 text-white py-16">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -213,7 +216,18 @@ const FoodDeliveryPage = () => {
                       <span className="text-orange-600 font-medium">
                         Delivery: {restaurant.deliveryFee}
                       </span>
-                      <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                      <button 
+                        onClick={() => {
+                          const token = localStorage.getItem('token');
+                          if (!token) {
+                            localStorage.setItem('returnUrl', window.location.pathname);
+                            window.location.href = '/login';
+                          } else {
+                            window.location.href = `/restaurants/${restaurant.id}`;
+                          }
+                        }}
+                        className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+                      >
                         Order Now
                       </button>
                     </div>
@@ -277,7 +291,18 @@ const FoodDeliveryPage = () => {
                     <span className="text-orange-600 font-medium">
                       Delivery: {restaurant.deliveryFee}
                     </span>
-                    <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                    <button 
+                      onClick={() => {
+                        const token = localStorage.getItem('token');
+                        if (!token) {
+                          localStorage.setItem('returnUrl', window.location.pathname);
+                          window.location.href = '/login';
+                        } else {
+                          window.location.href = `/restaurants/${restaurant.id}`;
+                        }
+                      }}
+                      className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+                    >
                       Order Now
                     </button>
                   </div>
@@ -323,7 +348,8 @@ const FoodDeliveryPage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </AuthGuard>
   );
 };
 

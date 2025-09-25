@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import AuthGuard from '../../components/auth/AuthGuard';
 
 const RealEstatePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -258,7 +259,8 @@ const RealEstatePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
+    <AuthGuard requireAuth={true}>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 to-gray-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -618,7 +620,8 @@ const RealEstatePage = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </AuthGuard>
   );
 };
 
