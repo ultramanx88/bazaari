@@ -26,7 +26,7 @@ export default function RestaurantDetail() {
   useEffect(() => {
     // Mock restaurant data
     setRestaurant({
-      id: params.id,
+      id: Array.isArray(params.id) ? params.id[0] : params.id,
       name: 'Spice Garden Indian Restaurant',
       description: 'Authentic Indian cuisine with traditional flavors and modern presentation',
       heroImage: '/api/placeholder/800/400',
