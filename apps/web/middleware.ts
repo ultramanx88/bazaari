@@ -12,7 +12,6 @@ const protectedRoutes = [
   '/real-estate',
   '/restaurants',
   '/shopping',
-  '/visa-services',
   '/contact'
 ];
 
@@ -24,7 +23,8 @@ const publicRoutes = [
   '/forgot-password',
   '/partner',
   '/partner/terms',
-  '/partner/register'
+  '/partner/register',
+  '/visa-services'
 ];
 
 export function middleware(request: NextRequest) {

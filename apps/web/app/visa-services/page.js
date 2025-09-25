@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import AuthGuard from '../../components/auth/AuthGuard';
 import { structuredData } from './structured-data';
 
 const VisaServicesPage = () => {
@@ -191,9 +190,9 @@ const VisaServicesPage = () => {
       processingTime: "7-10 working days",
       category: "education",
       urgency: "normal",
-      description: "Non-immigrant ED visa for Canadian students studying in Thailand",
+      description: "Non-immigrant ED visa for Canadian students in Thailand",
       requirements: ["Passport valid 6+ months", "Passport photos", "Acceptance letter", "Educational certificates", "Financial proof", "Medical certificate"],
-      features: ["90 days stay", "Study permit", "Extendable"],
+      features: ["90 days stay", "Extendable"],
       rating: 4.7,
       successRate: "93%",
       govFee: "฿2,000"
@@ -321,6 +320,57 @@ const VisaServicesPage = () => {
       id: 19,
       nationality: "All",
       flag: "🌍",
+      visaType: "Investment Consultant Services",
+      duration: "Ongoing",
+      price: "฿8,500",
+      processingTime: "1-3 working days",
+      category: "investment",
+      urgency: "express",
+      description: "Professional investment consulting and business advisory services for foreign investors in Thailand",
+      requirements: ["Investment plan", "Financial documents", "Business proposal", "Market analysis"],
+      features: ["Investment strategy", "Market research", "ROI analysis", "Risk assessment"],
+      rating: 4.9,
+      successRate: "100%",
+      govFee: "฿0"
+    },
+    {
+      id: 20,
+      nationality: "All",
+      flag: "🌍",
+      visaType: "Accounting & Tax Advisory",
+      duration: "Monthly/Annual",
+      price: "฿6,500",
+      processingTime: "Same day",
+      category: "accounting",
+      urgency: "express",
+      description: "Complete accounting services and tax advisory for businesses and individuals in Thailand",
+      requirements: ["Financial records", "Business registration", "Tax documents", "Bank statements"],
+      features: ["Monthly bookkeeping", "Tax filing", "Financial reporting", "Compliance audit"],
+      rating: 4.8,
+      successRate: "100%",
+      govFee: "฿0"
+    },
+    {
+      id: 21,
+      nationality: "All",
+      flag: "🌍",
+      visaType: "Legal Advisory Services",
+      duration: "As needed",
+      price: "฿7,500",
+      processingTime: "Same day",
+      category: "legal",
+      urgency: "express",
+      description: "Comprehensive legal advice and consultation services by experienced Thai lawyers",
+      requirements: ["Legal documents", "Case details", "Consultation appointment", "Legal requirements"],
+      features: ["Contract review", "Legal compliance", "Dispute resolution", "Court representation"],
+      rating: 4.9,
+      successRate: "100%",
+      govFee: "฿0"
+    },
+    {
+      id: 22,
+      nationality: "All",
+      flag: "🌍",
       visaType: "Personal Security Services",
       duration: "As needed",
       price: "฿15,000",
@@ -360,6 +410,8 @@ const VisaServicesPage = () => {
     { value: 'business', label: 'Business Services', icon: '🏢' },
     { value: 'longterm', label: 'Long-term Visa', icon: '📅' },
     { value: 'workpermit', label: 'Work Permit', icon: '📄' },
+    { value: 'investment', label: 'Investment Consulting', icon: '💰' },
+    { value: 'accounting', label: 'Accounting & Tax', icon: '📊' },
     { value: 'legal', label: 'Legal Services', icon: '⚖️' },
     { value: 'security', label: 'Security Services', icon: '🛡️' }
   ];
@@ -377,13 +429,15 @@ const VisaServicesPage = () => {
   });
 
   const handleConsultation = (serviceId) => {
-    alert(`Requesting consultation for visa service ID: ${serviceId}`);
-    // TODO: Implement consultation booking logic
+    // Open email client with pre-filled subject and body
+    const subject = encodeURIComponent(`Free Consultation Request - Service ID: ${serviceId}`);
+    const body = encodeURIComponent(`Hello,\n\nI would like to request a free consultation for visa service ID: ${serviceId}.\n\nPlease contact me to discuss the requirements and process.\n\nThank you.`);
+    window.open(`mailto:ttbkkrhun@yahoo.com?subject=${subject}&body=${body}`, '_blank');
   };
 
   const handleApply = (serviceId) => {
-    alert(`Starting visa application for service ID: ${serviceId}`);
-    // TODO: Implement visa application logic
+    // Open phone dialer
+    window.open(`tel:0993533556`, '_self');
   };
 
   return (
@@ -400,16 +454,23 @@ const VisaServicesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              🇹🇭 Thailand Visa Services
+              Thailand Visa Work Permit Services
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-4">
-              Professional Thailand visa assistance for foreigners seeking to visit, work, study, or retire in Thailand
+              Professional Thailand visa assistance for foreigners seeking to visit, work, or retire in Thailand
+            </p>
+            <p className="text-lg text-blue-200 max-w-4xl mx-auto mb-6">
+              Expert Consultant & Investment Services, Accounting & Legal Advice, Corporate Law by Professional Lawyer Team
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="bg-blue-500 bg-opacity-30 px-3 py-1 rounded-full">✅ 98% Success Rate</span>
               <span className="bg-blue-500 bg-opacity-30 px-3 py-1 rounded-full">⚡ Fast Processing</span>
               <span className="bg-blue-500 bg-opacity-30 px-3 py-1 rounded-full">🏆 Expert Consultation</span>
               <span className="bg-blue-500 bg-opacity-30 px-3 py-1 rounded-full">📋 Document Preparation</span>
+              <span className="bg-green-500 bg-opacity-30 px-3 py-1 rounded-full">💰 Investment Consulting</span>
+              <span className="bg-green-500 bg-opacity-30 px-3 py-1 rounded-full">📊 Accounting Services</span>
+              <span className="bg-green-500 bg-opacity-30 px-3 py-1 rounded-full">⚖️ Legal Advisory</span>
+              <span className="bg-green-500 bg-opacity-30 px-3 py-1 rounded-full">👨‍💼 Professional Lawyer Team</span>
             </div>
           </div>
 
@@ -467,8 +528,15 @@ const VisaServicesPage = () => {
               </div>
 
               <div className="flex items-end">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
-                  💬 Get Free Quote
+                <button 
+                  onClick={() => {
+                    const subject = encodeURIComponent('Free Quote Request - Thailand Visa Services');
+                    const body = encodeURIComponent('Hello,\n\nI would like to request a free quote for Thailand visa services.\n\nPlease provide me with detailed information and pricing.\n\nThank you.');
+                    window.open(`mailto:ttbkkrhun@yahoo.com?subject=${subject}&body=${body}`, '_blank');
+                  }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105"
+                >
+                  📧 Email for Quote
                 </button>
               </div>
             </div>
@@ -607,28 +675,20 @@ const VisaServicesPage = () => {
                   </ul>
                 </div>
 
-                {/* Price and Actions */}
+                {/* Actions */}
                 <div className="border-t pt-4">
-                  <div className="flex justify-between items-center mb-4">
-                    <div>
-                      <span className="text-2xl font-bold text-blue-600">{service.price}</span>
-                      <span className="text-gray-600 text-sm ml-1">service fee</span>
-                      <div className="text-xs text-gray-500">+ {service.govFee} govt fee</div>
-                    </div>
-                  </div>
-                  
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleConsultation(service.id)}
                       className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition duration-300"
                     >
-                      💬 Free Consult
+                      📧 Email Consult
                     </button>
                     <button
                       onClick={() => handleApply(service.id)}
                       className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105"
                     >
-                      Start Application
+                      📞 Call Now
                     </button>
                   </div>
                 </div>
@@ -651,7 +711,7 @@ const VisaServicesPage = () => {
       <div className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
-            Why Choose Our Thailand Visa Services?
+            Why Choose Our Thailand Visa Work Permit Services?
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             We are Thailand's leading visa service provider with over 10 years of experience helping foreigners obtain Thai visas
@@ -688,7 +748,7 @@ const VisaServicesPage = () => {
             Complete Thailand Services for Foreigners
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-            From visa applications to business setup, marriage registration to personal security - we provide comprehensive services for foreigners living and working in Thailand
+            From visa applications to business setup, investment consulting to legal advice - we provide comprehensive services including professional consultant & investment services, accounting & legal advice, and corporate law by our expert lawyer team for foreigners living and working in Thailand
           </p>
           
           {/* Visa Services */}
@@ -738,9 +798,60 @@ const VisaServicesPage = () => {
             </div>
           </div>
 
+          {/* Professional Consulting Services */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Professional Consultant & Investment Services</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-emerald-50 p-6 rounded-xl">
+                <div className="text-3xl mb-4">💰</div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Investment Consulting</h4>
+                <p className="text-gray-600 text-sm mb-3">Expert investment advice and business strategy</p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Investment strategy</li>
+                  <li>• Market research</li>
+                  <li>• ROI analysis</li>
+                  <li>• Risk assessment</li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-xl">
+                <div className="text-3xl mb-4">📊</div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Accounting & Tax</h4>
+                <p className="text-gray-600 text-sm mb-3">Complete accounting and tax advisory services</p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Monthly bookkeeping</li>
+                  <li>• Tax filing</li>
+                  <li>• Financial reporting</li>
+                  <li>• Compliance audit</li>
+                </ul>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-xl">
+                <div className="text-3xl mb-4">⚖️</div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Legal Advisory</h4>
+                <p className="text-gray-600 text-sm mb-3">Professional lawyer team for legal advice</p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Contract review</li>
+                  <li>• Legal compliance</li>
+                  <li>• Dispute resolution</li>
+                  <li>• Court representation</li>
+                </ul>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-xl">
+                <div className="text-3xl mb-4">🎯</div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Business Consulting</h4>
+                <p className="text-gray-600 text-sm mb-3">Comprehensive business advisory services</p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Business planning</li>
+                  <li>• Market entry strategy</li>
+                  <li>• Operational consulting</li>
+                  <li>• Growth strategy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Business & Legal Services */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Business & Legal Services</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Corporate Law by Professional Lawyer Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-indigo-50 p-6 rounded-xl">
                 <div className="text-3xl mb-4">🏢</div>
@@ -864,7 +975,7 @@ const VisaServicesPage = () => {
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Do I need a visa to visit Thailand?</h3>
-              <p className="text-gray-600">It depends on your nationality. Citizens of many countries can enter Thailand visa-free for 30 days. However, if you plan to stay longer or for specific purposes like work or study, you'll need a visa.</p>
+              <p className="text-gray-600">It depends on your nationality. Citizens of many countries can enter Thailand visa-free for 30 days. However, if you plan to stay longer or for specific purposes like work, you'll need a visa.</p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">What documents do I need for a Thailand visa?</h3>
@@ -898,7 +1009,11 @@ const VisaServicesPage = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">Phone</h3>
-                    <p className="text-gray-600">+66 99-353-3556</p>
+                    <p className="text-gray-600">
+                      <a href="tel:0993533556" className="hover:text-blue-600 transition-colors">
+                        099-353-3556
+                      </a>
+                    </p>
                   </div>
                 </div>
                 
@@ -910,7 +1025,11 @@ const VisaServicesPage = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">WhatsApp</h3>
-                    <p className="text-gray-600">+66 99-353-3556</p>
+                    <p className="text-gray-600">
+                      <a href="https://wa.me/66993533556" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                        099-353-3556
+                      </a>
+                    </p>
                   </div>
                 </div>
                 
@@ -922,7 +1041,11 @@ const VisaServicesPage = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">Email</h3>
-                    <p className="text-gray-600">visa@bazaari.com</p>
+                    <p className="text-gray-600">
+                      <a href="mailto:ttbkkrhun@yahoo.com" className="hover:text-purple-600 transition-colors">
+                        ttbkkrhun@yahoo.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -982,14 +1105,27 @@ const VisaServicesPage = () => {
             Contact us today for expert assistance with visas, business setup, legal services, and more. Free consultation available!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition duration-300">
-              📞 Call: +66 99-353-3556
+            <button 
+              onClick={() => window.open('tel:0993533556', '_self')}
+              className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition duration-300"
+            >
+              📞 Call: 099-353-3556
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg transition duration-300">
-              📧 Email: visa@bazaari.com
+            <button 
+              onClick={() => {
+                const subject = encodeURIComponent('Thailand Visa Services Inquiry');
+                const body = encodeURIComponent('Hello,\n\nI am interested in your Thailand visa and legal services.\n\nPlease contact me to discuss my requirements.\n\nThank you.');
+                window.open(`mailto:ttbkkrhun@yahoo.com?subject=${subject}&body=${body}`, '_blank');
+              }}
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg transition duration-300"
+            >
+              📧 Email: ttbkkrhun@yahoo.com
             </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
-              💬 WhatsApp: +66 99-353-3556
+            <button 
+              onClick={() => window.open('https://wa.me/66993533556', '_blank')}
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+            >
+              💬 WhatsApp: 099-353-3556
             </button>
           </div>
         </div>

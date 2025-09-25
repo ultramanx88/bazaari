@@ -1,6 +1,8 @@
 # Implementation Plan
 
 - [ ] 1. Setup database schema and backend models
+
+
   - Add Business, Branch, and UserBusiness models to Prisma schema
   - Generate and run database migrations
   - Create corresponding Go structs in backend/models/

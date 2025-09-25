@@ -17,4 +17,15 @@ type User struct {
 	CreatedAt time.Time      `json:"created_at"`
 	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
+
+	// Existing relationships
+	Orders []Order `json:"orders,omitempty" gorm:"foreignKey:UserID"`
+
+	// Hospitality booking relationships
+	UserBusinesses []UserBusiness `json:"user_businesses,omitempty" gorm:"foreignKey:UserID"`
+	Staff          []Staff        `json:"staff,omitempty" gorm:"foreignKey:UserID"`
+	Bookings       []HBooking     `json:"bookings,omitempty" gorm:"foreignKey:CustomerID"`
+	EventBookings  []EventBooking `json:"event_bookings,omitempty" gorm:"foreignKey:CustomerID"`
+	Reviews        []Review       `json:"reviews,omitempty" gorm:"foreignKey:CustomerID"`
+	Notifications  []Notification `json:"notifications,omitempty" gorm:"foreignKey:UserID"`
 }

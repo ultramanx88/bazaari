@@ -1,7 +1,7 @@
 export const seoContent = {
   // Primary Keywords
   primaryKeywords: [
-    'Thailand visa services',
+    'Thailand visa work permit services',
     'Thai visa application',
     'visa to Thailand',
     'Thailand tourist visa',
@@ -12,7 +12,13 @@ export const seoContent = {
     'Thailand marriage registration',
     'Thailand business visa',
     'Thailand legal services',
-    'Thailand corporate law'
+    'Thailand corporate law',
+    'Thailand investment consultant',
+    'Thailand accounting services',
+    'Thailand legal advice',
+    'Thailand lawyer team',
+    'Thailand business consultant',
+    'Thailand tax advisory'
   ],
 
   // Long-tail Keywords
@@ -33,7 +39,7 @@ export const seoContent = {
     'Thailand tourist visa 60 days',
     'Thailand work permit visa',
     'Thailand retirement visa over 50',
-    'Thailand education visa students',
+    'Thailand education visa',
     'Thailand marriage visa',
     'Thailand visa extension services',
     'Thailand visa expert consultation',
@@ -50,7 +56,19 @@ export const seoContent = {
     'register company in Thailand',
     'register marriage in Thailand',
     'Thailand lawyer services',
-    'Thailand immigration lawyer'
+    'Thailand immigration lawyer',
+    'Thailand investment consulting services',
+    'Thailand business investment advice',
+    'Thailand accounting and bookkeeping',
+    'Thailand tax preparation services',
+    'Thailand legal consultation',
+    'Thailand corporate legal advice',
+    'Thailand business legal services',
+    'Thailand professional lawyer team',
+    'Thailand investment advisory',
+    'Thailand financial consulting',
+    'Thailand business setup consulting',
+    'Thailand legal compliance services'
   ],
 
   // Location-based Keywords
@@ -133,7 +151,7 @@ export const seoContent = {
     tourist: 'Thailand tourist visa services for 60-day stays. Professional assistance, document preparation, high success rate. Apply for your Thailand tourist visa now!',
     work: 'Thailand work visa (Non-B) services. Expert assistance for employment visas, work permits, document preparation. Start your Thailand career today!',
     retirement: 'Thailand retirement visa (Non-O) for 50+ years old. Professional assistance, bank requirements, annual renewals. Retire in Thailand with confidence!',
-    education: 'Thailand education visa (Non-ED) for students. University, language school, training visas. Expert assistance for studying in Thailand!',
+    education: 'Thailand education visa (Non-ED) for education. University, language school, training visas. Expert assistance for education in Thailand!',
     family: 'Thailand family visa (Non-O) for spouses and dependents. Marriage visa, dependent visa services. Professional assistance for family reunification!'
   },
 
@@ -143,7 +161,7 @@ export const seoContent = {
     tourist: 'Thailand Tourist Visa Services | 60-Day Visa Application | Expert Assistance',
     work: 'Thailand Work Visa Services | Non-B Visa Application | Employment Visa Expert',
     retirement: 'Thailand Retirement Visa Services | Non-O Visa for 50+ | Professional Assistance',
-    education: 'Thailand Education Visa Services | Student Visa Application | Study in Thailand',
+    education: 'Thailand Education Visa Services | Education Visa Application | Education in Thailand',
     family: 'Thailand Family Visa Services | Marriage & Dependent Visa | Expert Assistance'
   }
 };
@@ -152,7 +170,7 @@ export const seoContent = {
 export const seoContentBlocks = {
   heroContent: {
     title: "Thailand's #1 Visa Service Provider",
-    subtitle: "Professional visa assistance for foreigners seeking to visit, work, study, or retire in Thailand",
+    subtitle: "Professional visa work permit assistance for foreigners seeking to visit, work, or retire in Thailand",
     features: [
       "98% Success Rate Guaranteed",
       "Fast Processing (3-15 days)",
@@ -163,7 +181,7 @@ export const seoContentBlocks = {
   },
 
   whyChooseUs: {
-    title: "Why Choose Our Thailand Visa Services?",
+    title: "Why Choose Our Thailand Visa Work Permit Services?",
     subtitle: "Over 10 years of experience helping foreigners obtain Thai visas with the highest success rate in Thailand",
     benefits: [
       {

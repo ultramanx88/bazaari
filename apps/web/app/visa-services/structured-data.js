@@ -4,7 +4,7 @@ export const structuredData = {
     {
       "@type": "Organization",
       "@id": "https://bazaari.com/#organization",
-      "name": "Bazaari Thailand Visa Services",
+      "name": "Bazaari Thailand Visa Work Permit Services",
       "url": "https://bazaari.com",
       "logo": {
         "@type": "ImageObject",
@@ -18,7 +18,7 @@ export const structuredData = {
         "contactType": "customer service",
         "availableLanguage": ["English", "Thai", "Chinese", "Japanese"],
         "areaServed": "TH",
-        "email": "visa@bazaari.com"
+        "email": "ttbkkrhun@yahoo.com"
       },
       "address": {
         "@type": "PostalAddress",
@@ -37,8 +37,8 @@ export const structuredData = {
     {
       "@type": "Service",
       "@id": "https://bazaari.com/visa-services/#service",
-      "name": "Thailand Visa Services",
-      "description": "Professional Thailand visa assistance for foreigners seeking tourist, work, education, retirement, and family visas with 98% success rate",
+      "name": "Thailand Visa Work Permit Services",
+      "description": "Professional Thailand visa work permit assistance, investment consulting, accounting & legal advice by expert lawyer team for foreigners seeking comprehensive business solutions with 98% success rate",
       "provider": {
         "@id": "https://bazaari.com/#organization"
       },
@@ -48,7 +48,7 @@ export const structuredData = {
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Thailand Visa Services",
+        "name": "Thailand Visa Work Permit Services",
         "itemListElement": [
           {
             "@type": "Offer",
@@ -88,7 +88,7 @@ export const structuredData = {
             "itemOffered": {
               "@type": "Service",
               "name": "Thailand Education Visa (Non-ED)",
-              "description": "Non-immigrant ED visa for students studying in Thailand"
+              "description": "Non-immigrant ED visa for education in Thailand"
             },
             "price": "5500",
             "priceCurrency": "THB",
@@ -153,6 +153,39 @@ export const structuredData = {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
+              "name": "Investment Consultant Services Thailand",
+              "description": "Professional investment consulting and business advisory services"
+            },
+            "price": "8500",
+            "priceCurrency": "THB",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Accounting & Tax Advisory Thailand",
+              "description": "Complete accounting services and tax advisory for businesses"
+            },
+            "price": "6500",
+            "priceCurrency": "THB",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Legal Advisory Services Thailand",
+              "description": "Comprehensive legal advice by experienced Thai lawyers"
+            },
+            "price": "7500",
+            "priceCurrency": "THB",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
               "name": "Personal Security Services Thailand",
               "description": "Professional bodyguard and personal protection services"
             },
@@ -174,8 +207,8 @@ export const structuredData = {
       "@type": "WebPage",
       "@id": "https://bazaari.com/visa-services/#webpage",
       "url": "https://bazaari.com/visa-services",
-      "name": "Thailand Visa Services | Professional Visa Assistance for Foreigners",
-      "description": "Expert Thailand visa services for tourists, workers, students, and retirees. 98% success rate, fast processing, document preparation. Get your Thai visa today!",
+      "name": "Thailand Visa Work Permit Services | Professional Visa Assistance for Foreigners",
+      "description": "Expert Thailand visa work permit services for tourists, workers, and retirees. 98% success rate, fast processing, document preparation. Get your Thai visa today!",
       "isPartOf": {
         "@type": "WebSite",
         "@id": "https://bazaari.com/#website"
@@ -221,7 +254,7 @@ export const structuredData = {
           "name": "Do I need a visa to visit Thailand?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It depends on your nationality. Citizens of many countries can enter Thailand visa-free for 30 days. However, if you plan to stay longer or for specific purposes like work or study, you'll need a visa."
+            "text": "It depends on your nationality. Citizens of many countries can enter Thailand visa-free for 30 days. However, if you plan to stay longer or for specific purposes like work, you'll need a visa."
           }
         },
         {

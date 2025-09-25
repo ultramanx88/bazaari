@@ -22,7 +22,9 @@ func SetupRoutes(app *fiber.App) {
 	auth := api.Group("/auth")
 	auth.Post("/register", handlers.Register)
 	auth.Post("/login", handlers.Login)
-	auth.Post("/refresh", handlers.RefreshToken)
+	auth.Post("/refresh", handlers.AuthMiddleware, handlers.RefreshToken)
+	auth.Post("/logout", handlers.AuthMiddleware, handlers.Logout)
+	auth.Get("/verify", handlers.AuthMiddleware, handlers.VerifyToken)
 
 	// Protected routes
 	protected := api.Group("/")
@@ -32,6 +34,9 @@ func SetupRoutes(app *fiber.App) {
 	users := protected.Group("/users")
 	users.Get("/profile", handlers.GetProfile)
 	users.Put("/profile", handlers.UpdateProfile)
+	users.Post("/change-password", handlers.ChangePassword)
+	users.Get("/businesses", handlers.RequireRole("business_owner"), handlers.GetUserBusinesses)
+	users.Post("/deactivate", handlers.DeactivateAccount)
 
 	// Product routes
 	products := api.Group("/products")
@@ -49,4 +54,20 @@ func SetupRoutes(app *fiber.App) {
 	orders.Get("/", handlers.GetOrders)
 	orders.Post("/", handlers.CreateOrder)
 	orders.Get("/:id", handlers.GetOrder)
+
+	// Business owner routes
+	businessOwner := protected.Group("/business-owner")
+	businessOwner.Use(handlers.RequireRole("business_owner"))
+	
+	// Business management routes (will be implemented in future tasks)
+	businesses := businessOwner.Group("/businesses")
+	businesses.Get("/", handlers.GetUserBusinesses) // Reuse the same handler
+	
+	// Branch management routes (placeholder for future implementation)
+	branches := businessOwner.Group("/businesses/:businessId/branches")
+	branches.Use(handlers.RequireBusinessOwner)
+	
+	// Staff management routes (placeholder for future implementation)  
+	staff := businessOwner.Group("/businesses/:businessId/staff")
+	staff.Use(handlers.RequireBusinessOwner)
 }

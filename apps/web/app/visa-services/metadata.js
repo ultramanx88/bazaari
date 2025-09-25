@@ -1,14 +1,14 @@
 export const metadata = {
-  title: 'Thailand Visa Services | Professional Visa Assistance for Foreigners',
-  description: 'Expert Thailand visa services for tourists, workers, students, and retirees. 98% success rate, fast processing, document preparation. Get your Thai visa today!',
+  title: 'Thailand Visa Work Permit Services | Professional Visa Assistance for Foreigners',
+  description: 'Expert Thailand visa work permit services, investment consulting, accounting & legal advice by professional lawyer team. 98% success rate, fast processing, comprehensive business solutions for foreigners in Thailand.',
   keywords: [
     'Thailand visa',
     'Thai visa services',
+    'Thailand work permit',
     'visa to Thailand',
     'Thailand tourist visa',
     'Thailand work visa',
     'Thailand retirement visa',
-    'Thailand education visa',
     'visa application Thailand',
     'Thai visa consultant',
     'Thailand visa requirements',
@@ -16,11 +16,24 @@ export const metadata = {
     'Thailand visa processing',
     'Thai embassy visa',
     'Thailand visa assistance',
-    'foreigner visa Thailand'
+    'foreigner visa Thailand',
+    'work permit Thailand',
+    'Thailand work permit services',
+    'Thailand investment consultant',
+    'Thailand accounting services',
+    'Thailand legal advice',
+    'Thailand corporate law',
+    'Thailand lawyer team',
+    'Thailand business consultant',
+    'Thailand tax advisory',
+    'Thailand legal services',
+    'investment consulting Thailand',
+    'accounting services Thailand',
+    'corporate lawyer Thailand'
   ].join(', '),
   openGraph: {
-    title: 'Thailand Visa Services | Professional Visa Assistance',
-    description: 'Get your Thailand visa with 98% success rate. Expert assistance for tourist, work, education, and retirement visas.',
+    title: 'Thailand Visa Work Permit Services | Professional Visa Assistance',
+    description: 'Get your Thailand visa work permit with 98% success rate. Expert assistance for tourist, work, and retirement visas.',
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'th_TH',
@@ -35,8 +48,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thailand Visa Services | Professional Visa Assistance',
-    description: 'Expert Thailand visa services with 98% success rate. Fast processing for all visa types.',
+    title: 'Thailand Visa Work Permit Services | Professional Visa Assistance',
+    description: 'Expert Thailand visa work permit services with 98% success rate. Fast processing for all visa types.',
     images: ['/images/thailand-visa-services.jpg']
   },
   robots: {

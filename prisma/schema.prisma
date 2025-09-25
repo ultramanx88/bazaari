@@ -21,7 +21,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
-  orders    Order[]
+  orders         Order[]
+  userBusinesses UserBusiness[]
+  staff          Staff[]
+  bookings       Booking[]
+  eventBookings  EventBooking[]
+  reviews        Review[]
+  notifications  Notification[]
   
   @@map("users")
 }
@@ -82,4 +88,264 @@ model OrderItem {
   product   Product @relation(fields: [productId], references: [id])
   
   @@map("order_items")
+}
+
+// Hospitality Booking Platform Models
+
+model Business {
+  id          Int      @id @default(autoincrement())
+  name        String
+  type        BusinessType
+  description String?
+  logo        String?
+  rating      Float    @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  branches       Branch[]
+  reviews        Review[]
+  events         Event[]
+  userBusinesses UserBusiness[]
+  
+  @@map("businesses")
+}
+
+model UserBusiness {
+  id         Int @id @default(autoincrement())
+  userId     Int
+  businessId Int
+  role       String @default("owner")
+  
+  user     User     @relation(fields: [userId], references: [id])
+  business Business @relation(fields: [businessId], references: [id])
+  
+  @@unique([userId, businessId])
+  @@map("user_businesses")
+}
+
+model Branch {
+  id         Int      @id @default(autoincrement())
+  businessId Int
+  name       String
+  address    String
+  phone      String
+  latitude   Float
+  longitude  Float
+  openTime   String
+  closeTime  String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  business Business  @relation(fields: [businessId], references: [id])
+  rooms    Room[]
+  staff    Staff[]
+  bookings Booking[]
+  
+  @@map("branches")
+}
+
+model Room {
+  id           Int          @id @default(autoincrement())
+  branchId     Int
+  name         String
+  category     RoomCategory
+  capacity     Int
+  pricePerHour Float
+  amenities    String[]
+  photos       String[]
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  branch   Branch    @relation(fields: [branchId], references: [id])
+  bookings Booking[]
+  
+  @@map("rooms")
+}
+
+model Staff {
+  id           Int       @id @default(autoincrement())
+  branchId     Int
+  userId       Int?
+  name         String
+  role         StaffRole
+  phone        String
+  email        String?
+  specialties  String[]
+  workingHours String
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  branch   Branch    @relation(fields: [branchId], references: [id])
+  user     User?     @relation(fields: [userId], references: [id])
+  bookings Booking[]
+  reviews  Review[]
+  
+  @@map("staff")
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  customerId  Int
+  branchId    Int
+  roomId      Int?
+  staffId     Int?
+  serviceType String
+  startTime   DateTime
+  endTime     DateTime
+  totalPrice  Float
+  status      BookingStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  customer User    @relation(fields: [customerId], references: [id])
+  branch   Branch  @relation(fields: [branchId], references: [id])
+  room     Room?   @relation(fields: [roomId], references: [id])
+  staff    Staff?  @relation(fields: [staffId], references: [id])
+  payment  Payment?
+  reviews  Review[]
+  
+  @@map("bookings")
+}
+
+model Payment {
+  id            Int           @id @default(autoincrement())
+  bookingId     Int           @unique
+  amount        Float
+  method        PaymentMethod
+  status        PaymentStatus @default(PENDING)
+  transactionId String?
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  booking Booking @relation(fields: [bookingId], references: [id])
+  
+  @@map("payments")
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  businessId  Int
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  capacity    Int?
+  price       Float?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  business Business       @relation(fields: [businessId], references: [id])
+  bookings EventBooking[]
+  
+  @@map("events")
+}
+
+model EventBooking {
+  id         Int           @id @default(autoincrement())
+  eventId    Int
+  customerId Int
+  attendees  Int           @default(1)
+  totalPrice Float
+  status     BookingStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
+  
+  event    Event @relation(fields: [eventId], references: [id])
+  customer User  @relation(fields: [customerId], references: [id])
+  
+  @@map("event_bookings")
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  customerId Int
+  businessId Int?
+  bookingId  Int?
+  staffId    Int?
+  rating     Int
+  comment    String?
+  response   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  customer User      @relation(fields: [customerId], references: [id])
+  business Business? @relation(fields: [businessId], references: [id])
+  booking  Booking?  @relation(fields: [bookingId], references: [id])
+  staff    Staff?    @relation(fields: [staffId], references: [id])
+  
+  @@map("reviews")
+}
+
+model Notification {
+  id          Int              @id @default(autoincrement())
+  userId      Int
+  type        NotificationType
+  title       String
+  message     String
+  isRead      Boolean          @default(false)
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime         @default(now())
+  
+  user User @relation(fields: [userId], references: [id])
+  
+  @@map("notifications")
+}
+
+// Enums
+enum BusinessType {
+  HOTEL
+  SPA
+  MASSAGE
+  HEALTHCARE
+}
+
+enum RoomCategory {
+  MASSAGE_ROOM
+  SPA_ROOM
+  HOTEL_ROOM
+  TREATMENT_ROOM
+  CONSULTATION_ROOM
+}
+
+enum StaffRole {
+  MANAGER
+  THERAPIST
+  RECEPTIONIST
+  CLEANER
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  DIGITAL_WALLET
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum NotificationType {
+  BOOKING_CONFIRMATION
+  REMINDER
+  CANCELLATION
+  PROMOTION
+  SCHEDULE_CHANGE
 }
