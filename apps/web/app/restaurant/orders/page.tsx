@@ -3,8 +3,27 @@
 import { useState } from 'react';
 import AuthGuard from '../../../components/auth/AuthGuard';
 
+interface Order {
+  id: string;
+  orderNumber: string;
+  customer: {
+    name: string;
+    phone: string;
+    address: string;
+  };
+  items: {
+    name: string;
+    quantity: number;
+    price: number;
+  }[];
+  status: string;
+  orderType: string;
+  total: number;
+  createdAt: string;
+}
+
 export default function RestaurantOrders() {
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [showReceipt, setShowReceipt] = useState(false);
 
   const orders = [
