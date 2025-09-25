@@ -9,6 +9,13 @@ const VisaServicesPage = () => {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedUrgency, setSelectedUrgency] = useState('all');
 
+  // Generate deterministic review count based on service ID
+  const getReviewCount = (serviceId) => {
+    const base = 30;
+    const variation = (serviceId * 7) % 80; // Deterministic variation
+    return base + variation;
+  };
+
   const visaServices = [
     {
       id: 1,
@@ -25,7 +32,8 @@ const VisaServicesPage = () => {
       features: ["Single Entry", "60 days stay", "Extendable once for 30 days"],
       rating: 4.9,
       successRate: "99%",
-      govFee: "฿1,000"
+      govFee: "฿1,000",
+      reviewCount: 87
     },
     {
       id: 2,
@@ -42,7 +50,8 @@ const VisaServicesPage = () => {
       features: ["Single Entry", "60 days stay", "Extendable once"],
       rating: 4.9,
       successRate: "99%",
-      govFee: "฿1,000"
+      govFee: "฿1,000",
+      reviewCount: 92
     },
     {
       id: 3,
@@ -59,7 +68,8 @@ const VisaServicesPage = () => {
       features: ["Single Entry", "60 days stay", "Extendable"],
       rating: 4.8,
       successRate: "97%",
-      govFee: "฿1,000"
+      govFee: "฿1,000",
+      reviewCount: 68
     },
     {
       id: 4,
@@ -643,7 +653,7 @@ const VisaServicesPage = () => {
                     {'☆'.repeat(5 - Math.floor(service.rating))}
                   </div>
                   <span className="ml-2 text-sm text-gray-600">
-                    {service.rating} ({Math.floor(Math.random() * 100) + 20} reviews)
+                    {service.rating} ({getReviewCount(service.id)} reviews)
                   </span>
                 </div>
 
