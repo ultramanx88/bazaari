@@ -12,7 +12,9 @@ export default function RestaurantDashboard() {
     totalOrders: 1247,
     todayOrders: 23,
     revenue: 45600,
-    rating: 4.5
+    rating: 4.5,
+    phone: '+66 2-123-4567',
+    address: '123 Sukhumvit Road, Bangkok'
   });
   const router = useRouter();
 
@@ -53,11 +55,11 @@ export default function RestaurantDashboard() {
                 >
                   {restaurant.isOpen ? 'Close Restaurant' : 'Open Restaurant'}
                 </button>
-                <button 
+                <button
                   onClick={() => router.push('/dashboard')}
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  Back to Dashboard
+                  Back to Main Dashboard
                 </button>
               </div>
             </div>
@@ -70,10 +72,9 @@ export default function RestaurantDashboard() {
             <nav className="flex space-x-8">
               {[
                 { id: 'overview', name: 'Overview', icon: '📊' },
-                { id: 'profile', name: 'Restaurant Profile', icon: '🏪' },
-                { id: 'menu', name: 'Menu Management', icon: '📋' },
-                { id: 'orders', name: 'Orders', icon: '🛒' },
-                { id: 'analytics', name: 'Analytics', icon: '📈' }
+                { id: 'orders', name: 'Orders', icon: '📋' },
+                { id: 'menu', name: 'Menu', icon: '🍽️' },
+                { id: 'profile', name: 'Profile', icon: '⚙️' }
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -92,154 +93,153 @@ export default function RestaurantDashboard() {
         </div>
 
         {/* Main Content */}
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            
-            {/* Overview Tab */}
-            {activeTab === 'overview' && (
-              <div className="space-y-6">
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  <div className="bg-white p-6 rounded-lg shadow-sm border">
-                    <div className="flex items-center">
-                      <div className="text-3xl mr-4">📦</div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-600">Total Orders</p>
-                        <p className="text-2xl font-bold text-gray-900">{restaurant.totalOrders.toLocaleString()}</p>
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Overview Tab */}
+          {activeTab === 'overview' && (
+            <div className="space-y-6">
+              {/* Stats Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">📋</span>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="bg-white p-6 rounded-lg shadow-sm border">
-                    <div className="flex items-center">
-                      <div className="text-3xl mr-4">📅</div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-600">Today's Orders</p>
-                        <p className="text-2xl font-bold text-blue-600">{restaurant.todayOrders}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white p-6 rounded-lg shadow-sm border">
-                    <div className="flex items-center">
-                      <div className="text-3xl mr-4">💰</div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-600">Revenue</p>
-                        <p className="text-2xl font-bold text-green-600">฿{restaurant.revenue.toLocaleString()}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white p-6 rounded-lg shadow-sm border">
-                    <div className="flex items-center">
-                      <div className="text-3xl mr-4">⭐</div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-600">Rating</p>
-                        <p className="text-2xl font-bold text-yellow-600">{restaurant.rating}</p>
-                      </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-600">Total Orders</p>
+                      <p className="text-2xl font-bold text-gray-900">{restaurant.totalOrders}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Quick Actions */}
                 <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button 
-                      onClick={() => setActiveTab('menu')}
-                      className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left"
-                    >
-                      <div className="text-2xl mb-2">📋</div>
-                      <h4 className="font-medium text-gray-900">Manage Menu</h4>
-                      <p className="text-sm text-gray-600">Add, edit, or remove menu items</p>
-                    </button>
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">📈</span>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-600">Today Orders</p>
+                      <p className="text-2xl font-bold text-gray-900">{restaurant.todayOrders}</p>
+                    </div>
+                  </div>
+                </div>
 
-                    <button 
-                      onClick={() => setActiveTab('orders')}
-                      className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left"
-                    >
-                      <div className="text-2xl mb-2">🛒</div>
-                      <h4 className="font-medium text-gray-900">View Orders</h4>
-                      <p className="text-sm text-gray-600">Check pending and completed orders</p>
-                    </button>
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-yellow-500 rounded-md flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">💰</span>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-600">Revenue</p>
+                      <p className="text-2xl font-bold text-gray-900">฿{restaurant.revenue.toLocaleString()}</p>
+                    </div>
+                  </div>
+                </div>
 
-                    <button 
-                      onClick={() => setActiveTab('profile')}
-                      className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left"
-                    >
-                      <div className="text-2xl mb-2">🏪</div>
-                      <h4 className="font-medium text-gray-900">Update Profile</h4>
-                      <p className="text-sm text-gray-600">Edit restaurant information</p>
-                    </button>
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">⭐</span>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-600">Rating</p>
+                      <p className="text-2xl font-bold text-gray-900">{restaurant.rating}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            )}
 
-            {/* Profile Tab */}
-            {activeTab === 'profile' && (
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Restaurant Profile</h3>
-                  
-                  <div className="space-y-6">
-                    {/* Basic Information */}
+              {/* Recent Orders */}
+              <div className="bg-white rounded-lg shadow-sm border">
+                <div className="px-6 py-4 border-b">
+                  <h3 className="text-lg font-semibold text-gray-900">Recent Orders</h3>
+                </div>
+                <div className="p-6">
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">No recent orders to display</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Profile Tab */}
+          {activeTab === 'profile' && (
+            <div className="space-y-6">
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">Restaurant Profile</h3>
+                
+                <div className="space-y-6">
+                  {/* Basic Information */}
+                  <div>
+                    <h4 className="text-md font-medium text-gray-900 mb-4">Basic Information</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Restaurant Name
+                        </label>
+                        <input
+                          type="text"
+                          value={restaurant.name}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          readOnly
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          value={restaurant.phone}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          readOnly
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div>
+                    <h4 className="text-md font-medium text-gray-900 mb-4">Address</h4>
                     <div>
-                      <h4 className="text-md font-medium text-gray-900 mb-4">Basic Information</h4>
-                      <div className="grid grid-cols-1 md:grid-cols">
-        
-                    me</label>
-                         
-                            type="text"
-                            value={restaurant.name}
-                            className="w-full px-3 py-2 bor
-                          />
-                        </div>
-                        <div>
-                          <label
-                          <
-                            type="tel"
-                            "
-                          -500"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Hero Imag}
-                    <d
-                      <h4 cla
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <div className="text-gray-400 mb-4">
-                          <div classNam/div>
-                        <v>
-                        <p className="text-gray-600 mb-2">Upload hero image for your restaurant</p>
-                        <button 
-                          Choose File
-                        </button>
-                      </div>
-                    </div>
-
-                    <>
-                      <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-7
-                        Save Changes
-                      </button>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Address
+                      </label>
+                      <textarea
+                        value={restaurant.address}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        readOnly
+                      />
                     </div>
                   </div>
-</div>
+                </div>
               </div>
-           
+            </div>
+          )}
 
-            {/* Other tabs pla*/}
-            {activeTab ! (
-              <d
-                <p className="text-gray-8">
-                  {activeTab.charAt(
-                </p>
-              </div>
-            )}
+          {/* Other tabs content */}
+          {activeTab === 'orders' && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Orders Management</h3>
+              <p className="text-gray-500">Orders management functionality will be implemented here.</p>
+            </div>
+          )}
 
-          </div>
+          {activeTab === 'menu' && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Menu Management</h3>
+              <p className="text-gray-500">Menu management functionality will be implemented here.</p>
+            </div>
+          )}
         </main>
       </div>
     </AuthGuard>
