@@ -4,6 +4,21 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import AuthGuard from '../../../components/auth/AuthGuard';
 
+interface OpeningHours {
+  open: string;
+  close: string;
+  closed: boolean;
+}
+
+interface Branch {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  coordinates: { lat: number; lng: number };
+  openingHours: Record<string, OpeningHours>;
+}
+
 interface Restaurant {
   id: string;
   name: string;
@@ -15,7 +30,7 @@ interface Restaurant {
   priceRange: string;
   cuisine: string;
   isOpen: boolean;
-  branches: any[];
+  branches: Branch[];
   menuCategories: {
     name: string;
     items: {
@@ -98,7 +113,7 @@ export default function RestaurantDetail() {
     setRestaurant(mockRestaurant);
   }, [params?.id]);
 
-  const openInMaps = (branch) => {
+  const openInMaps = (branch: Branch) => {
     const { lat, lng } = branch.coordinates;
     const address = encodeURIComponent(branch.address);
     
@@ -114,7 +129,7 @@ export default function RestaurantDetail() {
     }
   };
 
-  const getDirections = (branch) => {
+  const getDirections = (branch: Branch) => {
     const { lat, lng } = branch.coordinates;
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     window.open(directionsUrl, '_blank');
