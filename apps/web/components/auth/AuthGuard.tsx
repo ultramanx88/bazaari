@@ -21,7 +21,7 @@ export default function AuthGuard({ children, requireAuth = true }: AuthGuardPro
       
       if (requireAuth && (!token || !user)) {
         // Store the current path to redirect back after login
-        localStorage.setItem('returnUrl', pathname);
+        localStorage.setItem('returnUrl', pathname || '/');
         router.push('/login');
         return;
       }
