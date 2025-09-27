@@ -15,7 +15,7 @@ const emailConfig = {
 };
 
 // Create transporter for self-hosted mail server
-const transporter = nodemailer.createTransporter(emailConfig);
+const transporter = nodemailer.createTransport(emailConfig);
 
 // Send email function for self-hosted server
 export async function sendSelfHostedEmail(
