@@ -96,7 +96,7 @@ export default function RestaurantDetail() {
       ]
     };
     setRestaurant(mockRestaurant);
-  }, [params.id]);
+  }, [params?.id]);
 
   const openInMaps = (branch) => {
     const { lat, lng } = branch.coordinates;
