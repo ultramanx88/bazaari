@@ -16,6 +16,14 @@ interface Restaurant {
   cuisine: string;
   isOpen: boolean;
   branches: any[];
+  menuCategories: {
+    name: string;
+    items: {
+      name: string;
+      price: number;
+      description: string;
+    }[];
+  }[];
 }
 
 export default function RestaurantDetail() {
@@ -25,7 +33,7 @@ export default function RestaurantDetail() {
 
   useEffect(() => {
     // Mock restaurant data
-    setRestaurant({
+    const mockRestaurant: Restaurant = {
       id: params?.id ? (Array.isArray(params.id) ? params.id[0] : params.id) : '1',
       name: 'Spice Garden Indian Restaurant',
       description: 'Authentic Indian cuisine with traditional flavors and modern presentation',
@@ -86,7 +94,8 @@ export default function RestaurantDetail() {
           ]
         }
       ]
-    });
+    };
+    setRestaurant(mockRestaurant);
   }, [params.id]);
 
   const openInMaps = (branch) => {
